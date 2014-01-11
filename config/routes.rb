@@ -1,4 +1,5 @@
 Contest::Application.routes.draw do
+  get "users/new"
   root :to => "static_pages#home"
 
   match '/help',      to: 'static_pages#help',      via: 'get'
