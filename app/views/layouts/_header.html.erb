@@ -8,9 +8,7 @@
               <!-- Title Area -->
               <li class="name">
                 <h1>
-                  <a href="#">
-                    Top Bar Title
-                  </a>
+                  <%= link_to 'Talentcrops', root_path %>
                 </h1>
               </li>
               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
@@ -58,6 +56,9 @@
                     <li class="divider"></li>
                     <li><a href="#">See all →</a></li>
                   </ul>
+                </li>
+                <li class="has-form">
+                  <%= link_to "Sign Up", signup_path, :class => 'button' %>
                 </li>
               </ul>
             </section>
