@@ -1,0 +1,14 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="large-6 columns">
+      <ul class="users">
+          <li>
+            <%= gravatar_for user, size: 100 %>
+            <%= link_to user.first_name, user %>
+          </li>
+      </ul>
+    </div>
+  <% end %>
+</div>
