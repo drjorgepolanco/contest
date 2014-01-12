@@ -18,12 +18,11 @@
               <ul class="right">
                 <li class="divider"></li>
                 <li><%= link_to "Users", users_path %></li>
-                <li class="divider"></li>
-                <li><a href="#">Main Item 2</a></li>
+                
                 
                 <li class="divider"></li>
                 <li class="has-dropdown">
-                  <a href="#">User</a>
+                  <a href="#"><%= current_user.first_name %></a>
                   <ul class="dropdown">
                     <li><%= link_to "Profile", current_user %></li>
                     <li><%= link_to "Settings", edit_user_path(current_user) %></li>

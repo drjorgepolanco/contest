@@ -29,9 +29,9 @@
                 <%= link_to (image_tag post.image, :class => "post_image"), post %>
 
                 <div class="panel">
-                  <h5><strong><%= post.title %></strong></h5>
-                  <p>Posted <%= time_ago_in_words(post.created_at) %> ago.</p>
-                  <p><%= post.description %><p>
+                  <h5 class="post-thumb"><strong><%= post.title %></strong></h5>
+                  <p class="post-thumb">Posted <%= time_ago_in_words(post.created_at) %> ago.</p>
+                  <p class="post-thumb"><%= post.description %><p>
                     
                 </div>
             </div>

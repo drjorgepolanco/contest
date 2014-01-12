@@ -22,8 +22,8 @@ namespace :db do
     users = User.all(limit:6)
     50.times do
       title = "Lorem Ipsum"
-      description = Faker::Lorem.sentence(1)
-      image = "http://roflmouse.com/wp-content/uploads/2012/02/funny-animal-gifs-dj-panda.gif"
+      description = "Color sit amet makagrano"
+      image = "https://scontent-b-dfw.xx.fbcdn.net/hphotos-ash4/1003930_10152044972593961_1549075083_n.jpg"
       users.each { |user| user.posts.create!(title: title, description: description, image: image) }
     end
   end
