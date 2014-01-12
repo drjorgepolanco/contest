@@ -1,0 +1,15 @@
+<%= form_for(@post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Write your post's title..." %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "Tell me about your post..." %>
+
+    <%= f.label :image %>
+    <%= f.text_area :image %>
+  </div>
+  <%= f.submit "Create Post", class: "button" %>
+<% end %>

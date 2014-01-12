@@ -10,7 +10,7 @@
     <div class="large-6 medium-6 small-12 columns">
       <ul class="users">
           <li>
-            <%= gravatar_for user, size: 100 %>
+            <%= gravatar_for user, size: 120 %>
             <%= link_to "#{user.first_name} #{user.last_name}", user %>
             <% if current_user.admin? && !current_user?(user) %>
             | <%= link_to "delete", user, method: :delete,

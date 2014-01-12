@@ -18,5 +18,13 @@ namespace :db do
                   password: password,
                   password_confirmation: password)
     end
+
+    users = User.all(limit:6)
+    50.times do
+      title = Faker::Lorem.sentence(3)
+      description = Faker::Lorem.sentence(10)
+      image = "http://i.imgur.com/xtWR2bP.gif"
+      users.each { |user| user.posts.create!(title: title, description: description, image: image) }
+    end
   end
 end

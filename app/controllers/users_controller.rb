@@ -8,8 +8,9 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
-  def show
+def show
     @user = User.find(params[:id])
+    @posts = @user.posts.all
   end
 
   def new
@@ -52,13 +53,6 @@ class UsersController < ApplicationController
                                 :email, :profile_pic, 
                                 :date_of_birth, :password, 
                                 :password_confirmation)
-  end
-
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_url, notice: "Please, sign in."
-    end
   end
 
   def correct_user
