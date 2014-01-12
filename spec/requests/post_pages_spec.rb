@@ -52,5 +52,5 @@ describe "Post pages" do
       end
     end
   end
->>>>>>> posts
+
 end
