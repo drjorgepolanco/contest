@@ -10,17 +10,28 @@ describe User do
   # , date_of_birth: 07/31/1983
   subject {@user}
 
-  it {should respond_to(:first_name)}
-  it {should respond_to(:last_name)}
-  it {should respond_to(:email)}
+  it { should respond_to(:first_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:email) }
   #it {should respond_to(:date_of_birth)}
-  it {should respond_to(:password_digest)}
-  it {should respond_to(:password)}
-  it {should respond_to(:password_confirmation)}
-  it {should respond_to(:remember_token)}
-  it {should respond_to(:authenticate)}
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
+  it { should respond_to(:admin) }
 
-  it {should be_valid}
+  it { should be_valid }
+  it { should_not be_admin }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "when first name is not present" do
     before { @user.first_name = '' }

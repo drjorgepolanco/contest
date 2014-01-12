@@ -1,14 +1,28 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 <div class="row">
+  <div class="pagination">
+    <%= foundation_paginate @users %>
+  </div>
+</div>
+<div class="row">
   <% @users.each do |user| %>
-    <div class="large-6 columns">
+    <div class="large-6 medium-6 small-12 columns">
       <ul class="users">
           <li>
             <%= gravatar_for user, size: 100 %>
-            <%= link_to user.first_name, user %>
+            <%= link_to "#{user.first_name} #{user.last_name}", user %>
+            <% if current_user.admin? && !current_user?(user) %>
+            | <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "Are you sure?" } %>
+            <% end %>
           </li>
       </ul>
     </div>
   <% end %>
+</div>
+<div class="row">
+  <div class="pagination">
+    <%= foundation_paginate @users %>
+  </div>
 </div>
