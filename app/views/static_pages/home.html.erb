@@ -1,4 +1,49 @@
-<h1>TalentCrops</h1>
-  <p>
-    This is the home page for Talentcrops.
-  </p>
+<% if signed_in? %>
+  <div class="row home-view">
+    <div class="large-4 columns">
+      <section>
+        <%= render 'shared/post_form' %>
+      </section>
+
+      <div class="feed">
+        <% if signed_in? %>
+          <div class="row show-for-large-up">
+              <h3>Post Feed</h3>
+              <%= render 'shared/feed' %>
+          </div>
+        <% else %>
+        <div>
+          <h1>Welcome to Talentcrops!</h1>
+          <%= link_to "Sign up now!", signup_path,
+                                      class: "button" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="large-8 columns">
+      <% posts = Post.all %>
+        <div class="row">
+          <% posts.each do |post| %>
+            <div class="large-3 medium-6 small-12 columns left">
+                <%= link_to (image_tag post.image, :class => "post_image"), post %>
+
+                <div class="panel">
+                  <h5><strong><%= post.title %></strong></h5>
+                  <p>Posted <%= time_ago_in_words(post.created_at) %> ago.</p>
+                  <p><%= post.description %><p>
+                    
+                </div>
+            </div>
+          <% end %>
+        </div>
+      
+    </div>
+  </div>
+<% else %>
+  <div>
+    <h1>Welcome to Talentcrops!</h1>
+    <%= link_to "Sign up now!", signup_path,
+                                class: "button" %>
+  </div>
+<% end %>

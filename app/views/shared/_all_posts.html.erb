@@ -1,0 +1,59 @@
+<% posts.each do |post| %>
+  <div class="large-3 medium-6 small-12 columns left">
+      <%= link_to (image_tag post.image, :class => "post_image"), post %>
+      <div class="panel">
+        <h5><strong><%= post.title %></strong></h5>
+        <p>Posted <%= time_ago_in_words(post.created_at) %> ago.</p>
+        <p><%= post.description %><p>
+      </div>
+  </div>
+<% end %>
+<% posts.each do |post| %>
+<div class="large-3 medium-6 small-12 columns left">
+  <div id="posting_thumb_container">
+    <div id="posting_thumb_pic"><%= link_to (image_tag post.image, :class => "post_image"), post %></div> <!--"posting_thumb_pic"-->
+      <div id="posting_thumb_main_info">
+        <div id="posting_thumb_member_pic"></div>
+          <div id="posting_thumb_first_info">
+            <table class="posting_thumb_first_info">
+                <thead>
+                    <tr><th><%= post.title %></th></tr>
+                  </thead>
+                <tbody>
+                    <tr><td class="posting_thumb_member"><%= post.user.first_name %></td></tr>
+                      <tr class="posting_thumb_position"><td>Member Position</td></tr>
+                      <tr class="posting_thumb_category"><td>Category</td></tr>
+                  </tbody>
+              </table> <!--"posting_thumb_first_info"-->
+          </div> <!--"posting_thumb_first_info"-->
+      </div> <!--"posting_thumb_main_info"-->
+    <div id="posting_thumb_center">
+        <div id="posting_thumb_like_icon"><img src="images/like_icon_white.png" width="15" height="15" alt="like" /></div>
+          <div id="posting_thumb_like_text">
+          <table class="posting_thumb_like_text">
+            <tr>
+                <td>395,002 likes</td>
+              </tr>
+          </table>
+          </div>
+        <div id="posting_thumb_icon"><img src="images/icon_challenge_white.png" width="25" height="25" alt="icon" /></div>
+      </div>
+      <div id="posting_thumb_second_info">
+        <table class="posting_thumb_second_info">
+            <tr>
+                <td><img src="images/icon_friends_gray.png" width="24" height="24" alt="friends" /></td>
+                  <td class="posting_thumb_2_info">29</td>
+                  <td><img src="images/icon_prize_gray.png" width="24" height="24" alt="prize" /></td>
+                  <td class="posting_thumb_2_info">$2,610.00</td>
+              </tr>
+              <tr>
+                <td><img src="images/icon_end-time_gray.png" width="24" height="24" alt="end time" /></td>
+                  <td class="posting_thumb_2_info">21d 16h</td>
+                  <td><img src="images/icon_bid_gray.png" width="24" height="24" alt="bid" /></td>
+                  <td class="posting_thumb_2_info">$100.00</td>
+              </tr>
+          </table>
+      </div>
+  </div> <!--"posting_thumb_container"-->
+</div>
+<% end %>

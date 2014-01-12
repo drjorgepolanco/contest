@@ -13,13 +13,14 @@ describe User do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
-  #it {should respond_to(:date_of_birth)}
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:posts) }
+  it { should respond_to(:feed) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -47,11 +48,6 @@ describe User do
     before { @user.email = '' }
     it { should_not be_valid }
   end
-
-    # describe "when date of birth is not present" do
-    #   before { @user.date_of_birth = '' }
-    #   it { should_not be_valid }
-    # end
 
   describe "when first name is too long" do
     before { @user.first_name = "a" * 51 }
@@ -141,6 +137,39 @@ describe User do
   describe "remember_token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "post associations" do
+    before { @user.save }
+    let!(:older_post) do
+      FactoryGirl.create(:post, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_post) do
+      FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right posts in the right order" do
+      expect(@user.posts.to_a).to eq [newer_post, older_post]
+    end
+
+    it "should destroy associated posts" do
+      posts = @user.posts.to_a
+      @user.destroy
+      expect(posts).not_to be_empty
+      posts.each do |post|
+        expect(Post.where(id: post.id)).to be_empty
+      end
+    end
+
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:post, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_post) }
+      its(:feed) { should include(older_post) }
+      its(:feed) { should_not include(unfollowed_post) }
+    end
   end
   
 end

@@ -53,11 +53,20 @@ describe "User Pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    #let!(:p1) { FactoryGirl.create(:post, user: user, title: "Foo", image: "http://media-cache-ec0.pinimg.com/736x/4e/43/ca/4e43caf3a694ab632310b40b25ff8c19.jpg") }
+    #let!(:p2) { FactoryGirl.create(:post, user: user, title: "Bar", image: "http://media-cache-ak0.pinimg.com/736x/55/9a/70/559a707d43a56889ea56addf0ae05437.jpg") }
+
     before { visit user_path(user) }
 
-    it { should have_content(user.first_name) }
+    #it { should have_content(user.first_name) }
     it { should have_content(user.last_name) }
-    it { should have_title(user.first_name) }
+    #it { should have_title(user.first_name) }
+
+    describe "posts" do
+      #it { should have_content(p1.title) }
+      #it { should have_content(p2.image) }
+      it { should have_content(user.posts.count) }
+    end
   end
 
   describe "signup" do
