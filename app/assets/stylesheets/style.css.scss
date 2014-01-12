@@ -1,6 +1,25 @@
+.feed {
+  font-size: 75%;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* User profile */
 body {
   background-color: #f2f4f7;
+}
+
+
+.row.home-view {
+  margin-top: 16px;
 }
 
 .user-profile {
@@ -72,6 +91,12 @@ table.large-12.medium-12.small-12.columns {
 .user-profile-box-description {
   text-align: justify;
   color: #666;
+}
+.user-profile-box-description-ads {
+  text-align: center;
+  color: #666;
+  font-size: 75%;
+  font-weight: bold;
 }
 
 .row.separator-bar {

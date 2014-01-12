@@ -105,10 +105,26 @@
         <div class="large-2 medium-2 small-12 columns show-for-large-up">
             <div class="row user-profile-box">
               <div class="large-12 medium-12 small-12 columns">
-                <h6 class="user-profile-box-title"><strong>About <%= @user.first_name %></strong></h6>
+                <h6 class="user-profile-box-title"><strong>Ads</strong></h6>
               </div>
               <div class="large-12 medium-12 small-12 columns user-profile-box-content">
-                <p class="user-profile-box-description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsyOMj2-u_p_NB3kZNCTjKDvlrtpHMw68grIoFerKaP_i1S2OnlA"/>
+                <p class="user-profile-box-description-ads">Stay Young. Drink Pepsi!</p>
+              </div>
+
+              <div class="large-12 medium-12 small-12 columns user-profile-box-content">
+                <img src="http://rack.2.mshcdn.com/media/ZgkyMDEyLzEyLzA0LzZmL3lvdXR1YmVzMTBtLmJsSi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/0a1ae789/7d3/youtube-s-10-most-shared-ads-in-august-c4960f140e.jpg"/>
+                <p class="user-profile-box-description-ads">The Walking Dead</p>
+              </div>
+
+              <div class="large-12 medium-12 small-12 columns user-profile-box-content">
+                <img src="http://static4.businessinsider.com/image/51506b906bb3f7a017000001/15-unapproved-ads-that-got-top-brands-in-trouble.jpg"/>
+                <p class="user-profile-box-description-ads">Burger King</p>
+              </div>
+
+              <div class="large-12 medium-12 small-12 columns user-profile-box-content">
+                <img src="http://wouldyoubuythat.files.wordpress.com/2011/01/mini21.jpg"/>
+                <p class="user-profile-box-description-ads">Mini USA</p>
               </div>
             </div>
         </div> <!-- .large-2 medium-2 small-12 columns -->
@@ -128,25 +144,29 @@
       <div class="large-12 medium-12 small-12 columns">
         <% if @user.posts.any? %>
           <h3>Posts (<%= @user.posts.count %>)</h3>
-          <ul class="posts">
-            <% render @posts %>
-          </ul>
-        <% end %>
+          <div class="posts">
+            <% posts = current_user.posts.all %>
+              
+                <div class="row">
+                  <% posts.each do |post| %>
+                    <div class="large-3 medium-6 small-12 columns left">
+                        <%= link_to (image_tag post.image, :class => "post_image"), post %>
 
-        <%# posts = Post.all %>
-          <%# posts.each do |post| %>
-            <!-- <div class="row">
-                <div class="large-4 small-6 columns left">
-                    <%#= link_to (image_tag post.image, :class => "post_image"), post %>
-
-                    <div class="panel">
-                      <h5><strong><%#= post.title %></strong></h5>
-                      <p>Posted <%#= time_ago_in_words(post.created_at) %> ago.</p>
-                      <p><%#= post.description %><p>
+                        <div class="panel">
+                          <h5><strong><%= post.title %></strong></h5>
+                          <p>Posted <%= time_ago_in_words(post.created_at) %> ago.</p>
+                          <p><%= post.description %><p>
+                            <% if current_user?(post.user) %>
+                              <p><%= link_to "delete", post, method: :delete, 
+                                                                  data: { confirm: "You sure?" }, 
+                                                                  title: post.title %></p>
+                            <% end %>
+                        </div>
                     </div>
+                  <% end %>
                 </div>
-            </div> -->
-        <%# end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
