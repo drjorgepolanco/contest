@@ -145,7 +145,7 @@
         <% if @user.posts.any? %>
           <h3>Posts (<%= @user.posts.count %>)</h3>
           <div class="posts">
-            <% posts = current_user.posts.all %>
+            <% posts = @user.posts %>
               
                 <div class="row">
                   <% posts.each do |post| %>
