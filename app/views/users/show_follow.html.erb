@@ -1,0 +1,51 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="large-4 columns">
+    <section>
+      <%= link_to gravatar_for(@user, size: 600), user_path %>
+      <h1><%= link_to @user.first_name, user_path %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Posts:</b> <%= @user.posts.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+      <% if @users.any? %>
+        <div class="user_avatars">
+          <% @users.each do |user| %>
+            <%= link_to gravatar_for(user, size: 30), user %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </aside>
+  <div class="large-8 columns">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <!-- <ul class="users">
+        <%#= render @users %>
+
+      </ul> -->
+      <div class="users">
+            <% users = @users %>
+              
+                <div class="row">
+                  <% users.each do |user| %>
+                    <div class="large-3 medium-6 small-12 columns left">
+                        <%= link_to gravatar_for(user, size: 400), user %>
+
+                        <div class="panel">
+                          <h5 class="user-thumb"><strong><%= link_to user.first_name, user_path(user) %></strong></h5>
+                            <%# if current_user?(post.user) %>
+                              <p><%#= link_to "delete", post, method: :delete, 
+                                                                  data: { confirm: "You sure?" }, 
+                                                                  title: post.title %></p>
+                            <%# end %>
+                        </div>
+                    </div>
+                  <% end %>
+                </div>
+          </div>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

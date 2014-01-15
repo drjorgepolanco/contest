@@ -8,14 +8,14 @@
 
         <div class="large-3 medium-3 small-3 columns right">
             <div class="row">
-              <a href="#" class="button follow tiny right">Follow</a>
+              <%= render 'follow_form' if signed_in? %>
             </div>
         </div>
     </div>
 
     <div class="row user-profile-main">
 
-        <div class="large-6 medium-6 small-12 columns">
+        <div class="large-5 medium-6 small-12 columns">
 
             <div class="row user-profile-box">
               <div class="large-12 medium-12 small-12 columns main-img">
@@ -54,16 +54,14 @@
                 <p class="user-profile-box-description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
               </div>
             </div>
-        </div> <!-- .large-6 medium-6 small-12 columns -->
+        </div> <!-- .large-5 medium-6 small-12 columns -->
 
 
-        <div class="large-4 medium-6 small-12 columns">
+        <div class="large-5 medium-6 small-12 columns">
             <div class="row user-profile-box">
-              <div class="large-12 medium-12 small-12 columns">
-                <h6 class="user-profile-box-title"><strong><%= @user.first_name %> thinks that:</strong></h6>
-              </div>
+              
               <div class="large-12 medium-12 small-12 columns user-profile-box-content">
-                <p class="user-profile-box-description">Lorem Ipsum is not simply random text.</p>
+                <div class="user-profile-box-description"><%= render 'shared/stats' %></div>
               </div>
             </div>
             <div class="row user-profile-box">
@@ -71,7 +69,7 @@
                 <h6 class="user-profile-box-title"><strong><%= @user.first_name %> thinks that:</strong></h6>
               </div>
               <div class="large-12 medium-12 small-12 columns user-profile-box-content">
-                <p class="user-profile-box-description">Lorem Ipsum is not simply random text.</p>
+                <p class="user-profile-box-description"><%= render 'shared/feed' %></p>
               </div>
             </div>
             <div class="row user-profile-box">
@@ -91,15 +89,15 @@
               </div>
             </div>
             
-            <div class="row user-profile-box">
+            <!-- <div class="row user-profile-box">
               <div class="large-12 medium-12 small-12 columns">
                 <h6 class="user-profile-box-title"><strong>About <%= @user.first_name %></strong></h6>
               </div>
               <div class="large-12 medium-12 small-12 columns user-profile-box-content">
                 <p class="user-profile-box-description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
               </div>
-            </div>
-        </div> <!-- .large-4 medium-4 small-12 columns -->
+            </div> -->
+        </div> <!-- .large-5 medium-6 small-12 columns -->
 
 
         <div class="large-2 medium-2 small-12 columns show-for-large-up">
@@ -145,7 +143,11 @@
         <% if @user.posts.any? %>
           <h3>Posts (<%= @user.posts.count %>)</h3>
           <div class="posts">
+<<<<<<< HEAD
             <% posts = @user.posts %>
+=======
+            <% posts = current_user.posts %>
+>>>>>>> follow
               
                 <div class="row">
                   <% posts.each do |post| %>
