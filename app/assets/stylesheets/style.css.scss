@@ -48,6 +48,12 @@ body {
   font-size: 100%;
 }
 
+.button.unfollow {
+  background-color: #ff0000;
+  margin-bottom: 5px;
+  font-size: 100%;
+}
+
 h3 {
   margin-bottom: 0px;
 }
@@ -125,4 +131,25 @@ table.large-12.medium-12.small-12.columns {
 
 .gravatar {
   margin-bottom: 0px;
+}
+
+.stats {
+  /*overflow: auto;*/
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid #999;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: #1807B0;
+    }
+  }
+  strong {
+    display: block;
+  }
 }

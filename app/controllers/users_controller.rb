@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user,  only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user,  only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
 
@@ -10,7 +10,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.all
+    @posts = @user.posts
+    @feed_items = @user.feed.paginate(page: params[:page]).limit(5)
   end
 
   def new
@@ -46,6 +47,20 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+  
   private
 
     def user_params
