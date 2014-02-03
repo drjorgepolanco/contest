@@ -18,10 +18,12 @@ def make_users
   99.times do |n|
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
+    profile_pic = "https://scontent-a-dfw.xx.fbcdn.net/hphotos-ash3/t1/529434_784879471539780_740672644_n.jpg"
     email = "example-#{n+1}@talentcrops.com"
     password = "password"
     User.create!(first_name: first_name,
                 last_name: last_name,
+                profile_pic: profile_pic,
                 email: email,
                 password: password,
                 password_confirmation: password)

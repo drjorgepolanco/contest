@@ -8,16 +8,16 @@
       </div>
       <div class="large-3 medium-3 columns digit">
         <strong>
-          <%= link_to current_user.posts.count, posts_user_path(current_user) %>
+          <%= link_to @user.posts.count, posts_user_path(@user) %>
         </strong>
       </div>
       <div class="large-3 medium-3 columns digit">
         <strong>
-          <%= link_to current_user.followed_users.count, following_user_path(current_user) %></div>
+          <%= link_to @user.followed_users.count, following_user_path(@user) %></div>
         </strong>
       <div class="large-3 medium-3 columns digit">
         <strong>
-          <%= link_to current_user.followers.count, followers_user_path(current_user) %></div>
+          <%= link_to @user.followers.count, followers_user_path(@user) %></div>
         </strong>
     </div>
     <div class="large-12 medium-12 columns container">

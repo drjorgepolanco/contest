@@ -1,0 +1,13 @@
+<div class="large-12 medium-12 columns container">
+  <%= link_to image_tag(current_user.profile_pic, class: "image"), current_user %>
+  <div class="large-12 medium-12 columns container-top-bottom dash-title">
+    <h1 class="dash-user-name">
+      <strong>
+        <%= link_to full_name(current_user), current_user %>
+      </strong>
+    </h1>
+  </div>
+  <div class="large-12 medium-12 small-12 columns container box">
+    <%= render 'shared/stats' %>
+  </div>
+</div>

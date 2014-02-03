@@ -18,21 +18,33 @@
     </div>
 
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-12 medium-12 small-12 columns">
         <% flash.each do |key, value| %>          
-          <%= content_tag(:div, value, class: "alert-box alert-#{key}") %>
+          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
         <% end %>
       </div>
     </div>
 
     <div class="row">
-      <div class="large-12 columns">
-        <%= yield %>
+      <div id="body" class="large-12 medium-12 small-12 columns container">
+
+        <div id="dashboard" class="large-2 medium-2 columns container left show-for-large-up">
+          <%= render 'shared/dashboard' %>
+        </div>
+
+        <div id="feed" class="large-2 medium-2 columns container right show-for-large-up">
+          <%= render 'shared/feed' %>
+        </div>
+
+        <div id="main" class="large-8 medium-12 small-12 columns large-centered container">
+          <%= yield %>
+        </div>
+        
       </div>
     </div>
 
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-12 medium-12 small-12 columns">
         <%= render 'layouts/footer' %>
       </div>
     </div>

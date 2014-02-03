@@ -1,0 +1,5 @@
+<% if feed_items.try(:any?) %>
+  <div class="large-12 medium-12 small-12 columns feed">
+    <%= render partial: 'shared/feed_item', collection: feed_items %>
+  </div>
+<% end %>

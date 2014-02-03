@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @feed_items = @user.feed.paginate(page: params[:page]).limit(5)
+    @feed_items = current_user.feed
+    @following = @user.followed_users.limit(6)
+    # @feed_items = @user.feed.paginate(page: params[:page]).limit(5)
   end
 
   def new
@@ -59,6 +61,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def posts
+    @user = User.find(params[:id])
+    @posts = @user.posts
+    @feed_items = @user.feed.limit(5)
   end
   
   private

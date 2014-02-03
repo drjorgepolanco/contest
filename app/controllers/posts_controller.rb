@@ -4,6 +4,15 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @feed_items = current_user.feed
+  end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
+  def new
+    @post = Post.new
   end
 
   def create
