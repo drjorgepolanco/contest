@@ -2,11 +2,8 @@
 
 <div class="row">
   <div class="large-6 large-centered medium-centered small-centered medium-6 small-12 columns">
-    <h1>Update your profile</h1>
+    <h3><strong>Update your profile</strong></h3>
     <br />
-    <!--   <a href="http://gravatar.com/emails" target="_blank" class="gravatar"><%#= gravatar_for @user %>&nbsp;&nbsp;change</a>
-      <br />
-      <br /> -->
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 

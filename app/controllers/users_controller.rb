@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     @posts = @user.posts
     @feed_items = current_user.feed
     @following = @user.followed_users.limit(6)
-    # @feed_items = @user.feed.paginate(page: params[:page]).limit(5)
   end
 
   def new
@@ -32,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @feed_items = current_user.feed
   end
 
   def update

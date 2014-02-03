@@ -85,7 +85,7 @@ describe "User Pages" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_content(user.last_name) }
+    it { should have_content(user.profile_pic) }
 
     describe "posts" do
       it { should have_content(user.posts.count) }
@@ -101,7 +101,7 @@ describe "User Pages" do
 
       it "should render the user's feed" do
         user.feed.each do |item|
-          expect(page).to have_selector("li##{item.id}", text: item.title)
+          expect(page).to have_selector("div##{item.id}", text: item.title)
         end
       end
     
@@ -111,8 +111,8 @@ describe "User Pages" do
           other_user.follow!(user)
         end
 
-        it { should have_link("0 following", href: following_user_path(user)) }
-        it { should have_link("0 followers", href: followers_user_path(user)) }
+        it { should have_link("0", href: following_user_path(user)) }
+        it { should have_link("0", href: followers_user_path(user)) }
       end
     end
 
@@ -230,7 +230,7 @@ describe "User Pages" do
 
         it { should have_link('Sign out') }
         it { should have_title(user.first_name) }
-        it { should have_selector('div.alert-box.alert-success', text: "Welcome") }
+        it { should have_selector('div.alert.alert-success', text: "Welcome") }
       end
     end
   end
@@ -245,7 +245,6 @@ describe "User Pages" do
     describe "page" do
       it { should have_content("Update your profile") }
       it { should have_title("Edit profile") }
-      it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
 
     describe "with invalid information" do
@@ -268,7 +267,7 @@ describe "User Pages" do
       end
 
       it { should have_title(new_first_name) }
-      it { should have_selector('div.alert-box.alert-success') }
+      it { should have_selector('div.alert.alert-success') }
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.first_name).to eq new_first_name }
       specify { expect(user.reload.last_name).to eq new_last_name }

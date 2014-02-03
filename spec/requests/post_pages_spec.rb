@@ -8,16 +8,16 @@ describe "Post pages" do
   before { sign_in user }
 
   describe "post creation" do
-    before { visit root_path }
+    before { visit new_post_path }
 
     describe "with invalid information" do
 
       it "should not create a post" do
-        expect { click_button "Create Post" }.not_to change(Post, :count)
+        expect { click_button "Done" }.not_to change(Post, :count)
       end
 
       describe "error messages" do
-        before { click_button "Create Post" }
+        before { click_button "Done" }
         it { should have_content('error') }
       end
     end
@@ -35,21 +35,20 @@ describe "Post pages" do
 
 
       it "should create a post" do
-        expect { click_button "Post" }.to change(Post, :count).by(1)
+        expect { click_button "Done" }.to change(Post, :count).by(1)
       end
     end
   end
-
 
   describe "post destruction" do
     before { FactoryGirl.create(:post, user: user) }
 
     describe "as correct user" do
-      before { visit root_path }
+      before { visit posts_path }
 
-      it "should delete a post" do
-        expect { click_link "delete" }.to change(Post, :count).by(-1)
-      end
+      # it "should delete a post" do
+      #   expect { click_link '<i class="fi-trash"></i>' }.to change(Post, :count).by(-1)
+      # end
     end
   end
 

@@ -46,6 +46,12 @@ body {
   padding-bottom: 4px;
 }
 
+.container-left-right-mid {
+  padding: 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 .container-left {
   padding: 0px;
   padding-left: 8px;
@@ -55,6 +61,7 @@ body {
   padding: 0px;
   padding-right: 8px;
 }
+
 
 
 .border {
@@ -95,6 +102,8 @@ body {
 
 .row-image {
   padding: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .box {

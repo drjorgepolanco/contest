@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns box-text">
-        Posted <strong><%= feed_item.title %></strong>
+        Posted <strong><%= link_to feed_item.title, feed_item %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns category">
         <%= time_ago_in_words(feed_item.created_at) %> ago.

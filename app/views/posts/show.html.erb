@@ -1,12 +1,8 @@
-<% provide(:title, full_name(@user)) %>
+<% provide(:title, @post.title) %>
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
-    <div class="large-8 medium-8 small-8 columns left">
-      <h4 class="main-title"><strong><%= full_name(@user) %></strong></h4>
-    </div>
-
-    <div class="large-4 medium-4 small-4 columns right">
-      <%= render 'follow_form' if signed_in? %>
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><%= @post.title %></strong></h4>
     </div>
   </div>
 </div>
@@ -14,7 +10,7 @@
 <div class="large-12 medium-12 small-12 columns container-top">
   <div class="large-5 medium-6 small-6 columns">
     <div class="large-12 medium-12 small-12 columns image">
-      <%= image_tag @user.profile_pic %>
+      <%= image_tag @post.image %>
     </div>
 
     <div class="large-12 medium-12 small-12 columns container-top-bottom box">
@@ -42,33 +38,39 @@
 
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
-        <strong><%= @user.first_name.capitalize %> thinks that:</strong>
-      </div>
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-content">
-        Contrary to popular belief, Lorem Ipsum is not simply random text.
-      </div>
-    </div>
-
-    <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
-        <strong>About <%= @user.first_name.capitalize %></strong>
+        <strong>About <%= @post.description %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
-        It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+        <%= @post.description %>
       </div>
     </div>
   </div>
 
   <div class="large-5 medium-6 small-6 columns container">
-    <div class="large-12 medium-12 small-12 columns container box">
-      <%= render 'stats' %>
+    <div class="large-12 medium-12 small-12 columns container">
+      <div class="large-4 medium-4 small-4 columns container-right icon">
+        <% if current_user == @post.user %>
+          <%= link_to raw('<i class="fi-pencil"></i>'), edit_post_path(@post) %>
+        <% end %>
+      </div>
+      <div class="large-4 medium-4 small-4 columns container-right icon">
+        <% if current_user == @post.user %>
+          <%= link_to raw('<i class="fi-trash"></i>'), post_path, method: :delete, data: { confirm: "Are you sure?" }, title: @post.title %>
+        <% end %>
+      </div>
+      <div class="large-4 medium-4 small-4 columns container-right icon">
+        <%= link_to raw('<i class="fi-comments"></i>'), post_path %>
+      </div>
     </div>
+<!--     <div class="large-12 medium-12 small-12 columns container box">
+      <%#= render 'stats' %>
+    </div> -->
   
   <% if @following.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom container box-title">
         <div class="large-8 medium-8 small-8 columns to-left">
-          <strong><%= @user.first_name.capitalize %> follows:</strong>
+          <strong><%= @post.user.first_name.capitalize %> follows:</strong>
         </div>
         <div class="large-4 medium-4 small-4 columns to-right">
           <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
@@ -91,14 +93,14 @@
       <div class="large-12 medium-12 small-12 columns column-top-bottom container box-title">
 
         <div class="large-8 medium-8 small-8 columns to-left">
-          <strong>Followed by <%= @user.first_name.capitalize %>:</strong>
+          <strong>Followed by <%= @post.user.first_name.capitalize %>:</strong>
         </div>
         <div class="large-4 medium-4 small-4 columns to-right">
           <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container border">
-        <%= render partial: 'feed', locals: {feed_items: @user.feed} %>
+        <%= render partial: 'users/feed', locals: {feed_items: @user.feed} %>
       </div>
     </div>
   <% end %>
@@ -129,17 +131,17 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-10 medium-10 small-10 columns left">
-      <h4 class="main-title"><strong><%= @user.first_name %> posts:</strong></h4>
+      <h4 class="main-title"><strong><%= @post.user.first_name %>'s posts:</strong></h4>
     </div>
-  <% if @user.posts.any? %>
+  <% if @post.user.posts.any? %>
     <div class="large-2 medium-2 small-2 columns to-right">
-      <h4 class="main-title"><strong>(<%= @user.posts.count %>)</strong></h4>
+      <h4 class="main-title"><strong>(<%= @post.user.posts.count %>)</strong></h4>
     </div>
   </div>
 </div>
 
 <div class="large-12 medium-12 small-12 columns">
-    <% posts = @user.posts %>
+    <% posts = @post.user.posts %>
       <div id="wrapper">
           <div id="columns">
               <% posts.each do |post| %>                
@@ -208,6 +210,3 @@
       </div>
   <% end %>
 </div>
-
-
-        
