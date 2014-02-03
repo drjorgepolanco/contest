@@ -3,16 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= full_title(yield(:title)) %></title>
-
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    
     <div class="row">
       <%= render 'layouts/header' %>
     </div>
@@ -27,19 +24,21 @@
 
     <div class="row">
       <div id="body" class="large-12 medium-12 small-12 columns container">
-
+      <% if signed_in? %>
         <div id="dashboard" class="large-2 medium-2 columns container left show-for-large-up">
           <%= render 'shared/dashboard' %>
         </div>
-
         <div id="feed" class="large-2 medium-2 columns container right show-for-large-up">
           <%= render 'shared/feed' %>
         </div>
-
         <div id="main" class="large-8 medium-12 small-12 columns large-centered container">
           <%= yield %>
         </div>
-        
+      <% else %>
+        <div id="main" class="large-12 medium-12 small-12 columns large-centered container">
+          <%= yield %>
+        </div>
+      <% end %>
       </div>
     </div>
 

@@ -1,19 +1,27 @@
-<li id="<%= feed_item.id %>">
-  <%= link_to gravatar_for(feed_item.user), feed_item.user %>
-  <span class="user">
-    <%= link_to feed_item.user.first_name, feed_item.user %>
-  </span>
-  <span class="feed"><strong>Posted</strong> <%= feed_item.title %></span>
-  <br />
-  <span class="feed">
-     <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
-  <p>
-    <% if current_user?(feed_item.user) %>
-    <%= link_to "delete", feed_item, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: feed_item.title %>
-    <% end %>
-  </p>
+<div id="<%= feed_item.id %>" class="container">
+  <div class="large-12 medium-12 small-12 columns container-full feed-items">
+    <div class="large-2 medium-2 small-2 columns container image">
+      <%= link_to image_tag(feed_item.user.profile_pic), feed_item.user %>
+    </div>
+    <div class="large-10 medium-10 small-10 columns container">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-9 medium-9 small-9 columns box-title">
+          <strong><%= link_to full_name(feed_item.user), feed_item.user %></strong>
+        </div>
+        <div class="large-3 medium-3 small-3 columns to-right">
+          <% if current_user?(feed_item.user) %>
+            <%= link_to raw('<i class="fi-trash"></i>'), feed_item, method: :delete,
+                data: { confirm: "You sure?" }, title: feed_item.title %>
+          <% end %>
+        </div>
+      </div>
+      <div class="large-12 medium-12 small-12 columns box-text">
+        Posted <strong><%= feed_item.title %></strong>
+      </div>
+      <div class="large-12 medium-12 small-12 columns category">
+        <%= time_ago_in_words(feed_item.created_at) %> ago.
+      </div>
 
-</li>
+    </div>
+  </div>
+</div>

@@ -2,3 +2,11 @@
   overflow: auto;
   max-height: 500px;
 }
+
+.main-sash {
+  height: 25px;
+  background-color: #333;
+  -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6);
+  -moz-box-shadow:    0px 2px 10px rgba(21, 21, 21, 0.6);
+  box-shadow:         0px 2px 10px rgba(21, 21, 21, 0.6);
+}

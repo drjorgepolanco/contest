@@ -1,0 +1,18 @@
+#feed {
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  padding: 0px;
+}
+
+.feed {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.current-feed {
+  padding: 0px;
+}
+
+.feed-items {
+  border-bottom: 1px solid #ccc;
+}

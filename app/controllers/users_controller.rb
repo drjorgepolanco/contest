@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts
-    @feed_items = @user.feed.limit(5)
+    @feed_items = @user.feed
   end
   
   private
