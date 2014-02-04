@@ -5,17 +5,17 @@
     </div>
     <div class="large-10 medium-10 small-10 columns container">
       <div class="large-12 medium-12 small-12 columns container">
-        <div class="large-9 medium-9 small-9 columns box-title">
+        <div class="large-10 medium-10 small-10 columns font-80">
           <strong><%= link_to full_name(feed_item.user), feed_item.user %></strong>
         </div>
-        <div class="large-3 medium-3 small-3 columns to-right">
+        <div class="large-2 medium-2 small-2 columns font-80 container to-right">
           <% if current_user?(feed_item.user) %>
             <%= link_to raw('<i class="fi-trash"></i>'), feed_item, method: :delete,
                 data: { confirm: "You sure?" }, title: feed_item.title %>
           <% end %>
         </div>
       </div>
-      <div class="large-12 medium-12 small-12 columns box-text">
+      <div class="large-12 medium-12 small-12 columns column-top-mid font-70">
         Posted <strong><%= link_to feed_item.title, feed_item %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns category">

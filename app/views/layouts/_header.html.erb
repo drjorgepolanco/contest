@@ -1,51 +1,65 @@
-<!-- Navigation -->
-    <div class="fixed">
-     
-          <nav class="top-bar" data-topbar>
-            <ul class="title-area">
-              <!-- Title Area -->
-              <li class="name">
-                <h1>
-                  <%= link_to 'Talentcrops', root_path %>
-                </h1>
-              </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-            </ul>
-         
-            <section class="top-bar-section">
-              <!-- Right Nav Section -->
-              <% if signed_in? %>
-              <ul class="right">
-                <li class="divider"></li>
-                <li><%= link_to "Users", users_path %></li>
-                
-                
-                <li class="divider"></li>
-                <li class="has-dropdown">
-                  <a href="#"><%= current_user.first_name %></a>
-                  <ul class="dropdown">
-                    <li><%= link_to "Profile", current_user %></li>
-                    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                    <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">See all →</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <% else %>
-              <ul class="right">
-                <li class="divider"></li>
-                <li><%= link_to "Sign in", signin_path %></li>
-                <li class="divider"></li>
-                <li class="has-form">
-                  <%= link_to "Sign up", signup_path, :class => 'button' %>
-                </li>
-              </ul>
-              <% end %>
-            </section>
-          </nav>
-          <!-- End Top Bar -->
-    </div>
+<div class="fixed">
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <%= link_to image_tag('talentcrops.png', alt: "TalentCrops", class: "logo"), root_path %>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
  
-    <!-- End Navigation -->
+    <section class="top-bar-section">
+    <!-- Right Nav Section -->
+      <ul class="right navbar-links">
+
+        <% if signed_in? %>
+          <li class="divider"></li>
+          <li><%= link_to raw('<i class="fi-home"></i>'), root_path %></li>
+          
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <%= link_to raw('<i class="fi-star"></i>&nbsp;&nbsp;Contests'), root_path %>
+            <ul class="dropdown">
+              <li><%= link_to raw('<i class="fi-star"></i>&nbsp;&nbsp;New Contest'), root_path %></li>
+              <li><%= link_to raw('<i class="fi-star"></i>&nbsp;&nbsp;All Contests'), root_path %></li>
+            </ul>
+          </li>
+
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <%= link_to raw('<i class="fi-page-filled"></i>&nbsp;&nbsp;Posts'), posts_path %>
+            <ul class="dropdown">
+              <li><%= link_to raw('<i class="fi-page-filled"></i>&nbsp;&nbsp;New Post'), new_post_path %></li>
+              <li><%= link_to raw('<i class="fi-page-filled"></i>&nbsp;&nbsp;All Posts'), posts_path %></li>
+            </ul>
+          </li>
+
+          <li class="divider"></li>
+          <li><%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;Users'), users_path %></li>
+          
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <%= link_to raw('<i class="fi-torso"></i>&nbsp;&nbsp;Profile'), user_path(current_user) %>
+            <ul class="dropdown">
+              <li><%= link_to raw('<i class="fi-widget"></i>&nbsp;&nbsp;Edit Profile'), edit_user_path(current_user) %></li>
+              <li><%= link_to raw('<i class="fi-lock"></i>&nbsp;&nbsp;Privacy'), root_path %></li>
+              <li><%= link_to raw('<i class="fi-power"></i>&nbsp;&nbsp;Sign Out'), signout_path, method: "delete" %></li>
+              <li class="divider"></li>
+              <li><%= link_to raw('<i class="fi-info"></i>&nbsp;&nbsp;Help'), help_path %></li>
+              <li><%= link_to raw('<i class="fi-flag"></i>&nbsp;&nbsp;Report Problem'), root_path %></a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="divider"></li>
+          <li><%= link_to raw('<i class="fi-at-sign"></i>&nbsp;&nbsp;Sign In'), signin_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to raw('<i class="fi-key"></i>&nbsp;&nbsp;Sign Up'), signup_path, :class => 'button' %></li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+  <div class="row main-sash">
+  </div>
+</div>

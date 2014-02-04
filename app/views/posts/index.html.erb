@@ -1,3 +1,13 @@
+<% provide(:title, "Posts" %>
+
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> Posts</strong></h4>
+    </div>
+  </div>
+</div>
+
 <div class="large-12 medium-12 small-12 columns">
   <% posts = Post.all %>
     <div id="wrapper">
@@ -25,12 +35,12 @@
                         <%= link_to image_tag(post.user.profile_pic, :class => "image"), user_path(post.user) %>
                       </div>
                       <div class="large-9 medium-9 small-9 columns container-left">
-                        <div class="large-12 medium-12 small-12 columns container user-name">
+                        <div class="large-12 medium-12 small-12 columns container font-80">
                             <strong>
                               <%= link_to "#{post.user.first_name.capitalize} #{post.user.last_name.capitalize}", user_path(post.user) %>
                             </strong>
                           </div>
-                          <div class="large-12 medium-12 small-12 columns container user-tag">
+                          <div class="large-12 medium-12 small-12 columns container font-70">
                             <strong>
                               <%#= post.user.tag %>Web Dev
                             </strong>

@@ -1,8 +1,22 @@
 <% provide(:title, @post.title) %>
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
-    <div class="large-12 medium-12 small-12 columns">
-      <h4 class="main-title"><strong><%= @post.title %></strong></h4>
+    <div class="large-10 medium-10 small-10 columns">
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @post.title %></strong></h4>
+    </div>
+    <div class="large-2 medium-2 small-2 columns container">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-6 medium-6 small-6 columns container-top to-right top-icon">
+          <% if current_user == @post.user %>
+            <%= link_to raw('<i class="fi-pencil"></i>'), edit_post_path(@post) %>
+          <% end %>
+        </div>
+        <div class="large-6 medium-6 small-6 columns container-top to-center top-icon">
+          <% if current_user == @post.user %>
+            <%= link_to raw('<i class="fi-trash"></i>'), post_path, method: :delete, data: { confirm: "Are you sure?" }, title: @post.title %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -13,31 +27,28 @@
       <%= image_tag @post.image %>
     </div>
 
-    <div class="large-12 medium-12 small-12 columns container-top-bottom box">
+    <div class="large-12 medium-12 small-12 columns container-top box">
       <div class="large-12 medium-12 small-12 columns container-bottom border-bottom">
-        <div class="large-4 medium-4 small-4 columns box-title to-left">
-          <i class='fi-eye'></i>&nbsp;&nbsp;3,145
+        <div class="large-6 medium-6 small-6 columns font-80 to-left">
+          <i class='fi-eye'></i>&nbsp;&nbsp;3,165
         </div>
-        <div class="large-4 medium-4 small-4 columns box-title to-center">
+        <div class="large-6 medium-6 small-6 columns font-80 to-right">
           <i class='fi-like'></i>&nbsp;&nbsp;65
-        </div>
-        <div class="large-4 medium-4 small-4 columns box-title to-right">
-          <i class='fi-share'></i>&nbsp;&nbsp;share
         </div>
       </div>
 
-      <div class="large-12 medium-12 small-12 columns container-top show-for-large-up">
-        <div class="large-6 medium-6 small-6 columns box-title to-left">
+      <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-large-up">
+        <div class="large-6 medium-6 small-6 columns font-80 to-left">
           Austin, TX
         </div>
-        <div class="large-6 medium-6 small-6 columns box-title to-right">
-          Since: Jan 4, 2014
+        <div class="large-6 medium-6 small-6 columns font-80 to-right">
+          Since: Jan 6, 2014
         </div>
       </div>
     </div>
 
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom font-90">
         <strong>About <%= @post.description %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
@@ -46,25 +57,23 @@
     </div>
   </div>
 
-  <div class="large-5 medium-6 small-6 columns container">
-    <div class="large-12 medium-12 small-12 columns container">
-      <div class="large-4 medium-4 small-4 columns container-right icon">
-        <% if current_user == @post.user %>
-          <%= link_to raw('<i class="fi-pencil"></i>'), edit_post_path(@post) %>
-        <% end %>
+  <div class="large-5 medium-6 small-6 columns">
+    
+    <div class="large-12 medium-12 small-12 columns container box">
+      <div class="large-4 medium-4 small-4 columns container">
+        <%= link_to image_tag(@user.profile_pic, class: "image"), user_path(@user) %> 
       </div>
-      <div class="large-4 medium-4 small-4 columns container-right icon">
-        <% if current_user == @post.user %>
-          <%= link_to raw('<i class="fi-trash"></i>'), post_path, method: :delete, data: { confirm: "Are you sure?" }, title: @post.title %>
-        <% end %>
-      </div>
-      <div class="large-4 medium-4 small-4 columns container-right icon">
-        <%= link_to raw('<i class="fi-comments"></i>'), post_path %>
+      <div class="large-8 medium-8 small-8 columns container">
+        <div class="large-12 medium-12 small-12 columns column-top">
+          <strong><%= link_to full_name(@user) %></strong>
+        </div>
+        <div class="large-12 medium-12 small-12 columns column-top-mid font-80">
+          <%#= @user.tag %>Web Dev
+        </div>
+        <div class="large-12 medium-12 small-12 columns">
+        </div>
       </div>
     </div>
-<!--     <div class="large-12 medium-12 small-12 columns container box">
-      <%#= render 'stats' %>
-    </div> -->
   
   <% if @following.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
@@ -73,7 +82,7 @@
           <strong><%= @post.user.first_name.capitalize %> follows:</strong>
         </div>
         <div class="large-4 medium-4 small-4 columns to-right">
-          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
+          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;see all'), following_user_path(@user) %> 
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container-left-right-mid border">
@@ -87,6 +96,27 @@
         </div>
     </div>
   <% end %>
+  
+  <div class="large-12 medium-12 small-12 columns container-top-bottom">
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon facebook small" href="#"></a>
+    </div>
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon twitter small" href="#"></a>
+    </div>
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon pinterest small" href="#"></a>
+    </div>
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon googleplus small" href="#"></a>
+    </div>
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon mail small" href="#"></a>
+    </div>
+    <div class="large-2 medium-2 small-2 columns">
+      <a class="fi-webicon pocketapp small" href="#"></a>
+    </div>
+  </div>
 
   <% if @feed_items.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
@@ -96,7 +126,7 @@
           <strong>Followed by <%= @post.user.first_name.capitalize %>:</strong>
         </div>
         <div class="large-4 medium-4 small-4 columns to-right">
-          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
+          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;see all'), following_user_path(@user) %> 
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container border">
@@ -131,7 +161,7 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-10 medium-10 small-10 columns left">
-      <h4 class="main-title"><strong><%= @post.user.first_name %>'s posts:</strong></h4>
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @post.user.first_name %>'s posts:</strong></h4>
     </div>
   <% if @post.user.posts.any? %>
     <div class="large-2 medium-2 small-2 columns to-right">
@@ -167,12 +197,12 @@
                           <%= link_to image_tag(post.user.profile_pic, :class => "image"), user_path(post.user) %>
                         </div>
                         <div class="large-9 medium-9 small-9 columns container-left">
-                          <div class="large-12 medium-12 small-12 columns container user-name">
+                          <div class="large-12 medium-12 small-12 columns container font-80">
                               <strong>
                                 <%= link_to "#{post.user.first_name.capitalize} #{post.user.last_name.capitalize}", user_path(post.user) %>
                               </strong>
                             </div>
-                            <div class="large-12 medium-12 small-12 columns container user-tag">
+                            <div class="large-12 medium-12 small-12 columns container font-70">
                               <strong>
                                 <%#= post.user.tag %>Web Dev
                               </strong>

@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.all
+    @feed_items = current_user.feed
   end
 
   def show
@@ -50,16 +51,18 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "Following"
+    @title = "Followed Users"
     @user = User.find(params[:id])
-    @users = @user.followed_users.paginate(page: params[:page])
+    @users = @user.followed_users
+    @feed_items = current_user.feed
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers
+    @feed_items = current_user.feed
     render 'show_follow'
   end
 

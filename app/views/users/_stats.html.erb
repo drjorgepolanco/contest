@@ -1,29 +1,29 @@
 <% @user ||= current_user %>
-  <div class="large-12 medium-12 columns container-top-bottom stats">
-    <div class="large-12 medium-12 columns container">
-      <div class="large-3 medium-3 columns digit">
+  <div class="large-12 medium-12 small-12 columns container-top-bottom stats">
+    <div class="large-12 medium-12 small-12 columns container">
+      <div class="large-3 medium-3 small-3 columns digit">
         <strong>
           12
         </strong>
       </div>
-      <div class="large-3 medium-3 columns digit">
+      <div class="large-3 medium-3 small-3 columns digit">
         <strong>
           <%= link_to @user.posts.count, posts_user_path(@user) %>
         </strong>
       </div>
-      <div class="large-3 medium-3 columns digit">
+      <div class="large-3 medium-3 small-3 columns digit">
         <strong>
           <%= link_to @user.followed_users.count, following_user_path(@user) %></div>
         </strong>
-      <div class="large-3 medium-3 columns digit">
+      <div class="large-3 medium-3 small-3 columns digit">
         <strong>
           <%= link_to @user.followers.count, followers_user_path(@user) %></div>
         </strong>
     </div>
-    <div class="large-12 medium-12 columns container">
-      <div class="large-3 medium-3 columns text">contests</div>
-      <div class="large-3 medium-3 columns text">posts</div>
-      <div class="large-3 medium-3 columns text">following</div>
-      <div class="large-3 medium-3 columns text">followers</div>
+    <div class="large-12 medium-12 small-12 columns container">
+      <div class="large-3 medium-3 small-3 columns text">contests</div>
+      <div class="large-3 medium-3 small-3 columns text">posts</div>
+      <div class="large-3 medium-3 small-3 columns text">following</div>
+      <div class="large-3 medium-3 small-3 columns text">followers</div>
     </div>    
   </div>

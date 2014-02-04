@@ -2,7 +2,7 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-8 medium-8 small-8 columns left">
-      <h4 class="main-title"><strong><%= full_name(@user) %></strong></h4>
+      <h4 class="main-title"><strong><i class="fi-torso"></i> <%= full_name(@user) %></strong></h4>
     </div>
 
     <div class="large-4 medium-4 small-4 columns right">
@@ -17,31 +17,28 @@
       <%= image_tag @user.profile_pic %>
     </div>
 
-    <div class="large-12 medium-12 small-12 columns container-top-bottom box">
+    <div class="large-12 medium-12 small-12 columns container-top box">
       <div class="large-12 medium-12 small-12 columns container-bottom border-bottom">
-        <div class="large-4 medium-4 small-4 columns box-title to-left">
-          <i class='fi-eye'></i>&nbsp;&nbsp;3,145
+        <div class="large-6 medium-6 small-6 columns font-80 to-left">
+          <i class='fi-eye'></i>&nbsp;&nbsp;3,165
         </div>
-        <div class="large-4 medium-4 small-4 columns box-title to-center">
+        <div class="large-6 medium-6 small-6 columns font-80 to-right">
           <i class='fi-like'></i>&nbsp;&nbsp;65
-        </div>
-        <div class="large-4 medium-4 small-4 columns box-title to-right">
-          <i class='fi-share'></i>&nbsp;&nbsp;share
         </div>
       </div>
 
-      <div class="large-12 medium-12 small-12 columns container-top show-for-large-up">
-        <div class="large-6 medium-6 small-6 columns box-title to-left">
+      <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-large-up">
+        <div class="large-6 medium-6 small-6 columns font-80 to-left">
           Austin, TX
         </div>
-        <div class="large-6 medium-6 small-6 columns box-title to-right">
+        <div class="large-6 medium-6 small-6 columns font-80 to-right">
           Since: Jan 4, 2014
         </div>
       </div>
     </div>
 
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom font-80">
         <strong><%= @user.first_name.capitalize %> thinks that:</strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content">
@@ -50,7 +47,7 @@
     </div>
 
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom font-80">
         <strong>About <%= @user.first_name.capitalize %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
@@ -66,7 +63,7 @@
   
   <% if @following.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom container box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom container font-80">
         <div class="large-8 medium-8 small-8 columns to-left">
           <strong><%= @user.first_name.capitalize %> follows:</strong>
         </div>
@@ -88,7 +85,7 @@
 
   <% if @feed_items.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom container box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom container font-80">
 
         <div class="large-8 medium-8 small-8 columns to-left">
           <strong>Followed by <%= @user.first_name.capitalize %>:</strong>
@@ -106,7 +103,7 @@
   
   <div class="large-2 medium-2 columns show-for-large-up">
     <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom box-title">
+      <div class="large-12 medium-12 small-12 columns column-top-bottom font-80">
         <strong>Ads</strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
@@ -129,7 +126,7 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-10 medium-10 small-10 columns left">
-      <h4 class="main-title"><strong><%= @user.first_name %> posts:</strong></h4>
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @user.first_name %>'s posts:</strong></h4>
     </div>
   <% if @user.posts.any? %>
     <div class="large-2 medium-2 small-2 columns to-right">
@@ -165,12 +162,12 @@
                           <%= link_to image_tag(post.user.profile_pic, :class => "image"), user_path(post.user) %>
                         </div>
                         <div class="large-9 medium-9 small-9 columns container-left">
-                          <div class="large-12 medium-12 small-12 columns container user-name">
+                          <div class="large-12 medium-12 small-12 columns container font-80">
                               <strong>
                                 <%= link_to "#{post.user.first_name.capitalize} #{post.user.last_name.capitalize}", user_path(post.user) %>
                               </strong>
                             </div>
-                            <div class="large-12 medium-12 small-12 columns container user-tag">
+                            <div class="large-12 medium-12 small-12 columns container font-70">
                               <strong>
                                 <%#= post.user.tag %>Web Dev
                               </strong>

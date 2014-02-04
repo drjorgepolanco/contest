@@ -52,14 +52,6 @@
   color: #fff;
 }
 
-.user-name {
-  font-size: 80%;
-}
-
-.user-tag {
-  font-size: 70%;
-}
-
 .category {
   font-size: 70%;
   padding-top: 4px;
@@ -78,8 +70,6 @@
     column-count: 2;
   }
 }
-
-
 
 @media (min-width: 640px) {
   #columns {

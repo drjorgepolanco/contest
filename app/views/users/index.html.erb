@@ -1,28 +1,69 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
-<div class="row">
-  <div class="pagination">
-    <%= foundation_paginate @users %>
-  </div>
-</div>
-<div class="row">
-  <% @users.each do |user| %>
-    <div class="large-6 medium-6 small-12 columns">
-      <ul class="users">
-          <li>
-            <%= gravatar_for user, size: 120 %>
-            <%= link_to "#{user.first_name} #{user.last_name}", user %>
-            <% if current_user.admin? && !current_user?(user) %>
-            | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
-            <% end %>
-          </li>
-      </ul>
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><i class="fi-torsos"></i> Users</strong></h4>
     </div>
-  <% end %>
-</div>
-<div class="row">
-  <div class="pagination">
-    <%= foundation_paginate @users %>
   </div>
 </div>
+<div class="large-12 medium-12 small-12 columns">
+    <div id="wrapper">
+        <div id="columns">
+            <% @users.each do |user| %>                
+                <div class="thumb">
+                    <div class="large-12 medium-12 small-12 columns container">
+                      <%= link_to image_tag(user.profile_pic, :class => "image"), user %>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom thumb-title">
+                      <strong><%= link_to full_name(user), user %></strong>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container sash show-for-medium-up">
+                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
+                        <i class="fi-torso"></i>
+                      </div>
+                      <div class="large-4 medium-4 small-4 columns icon">
+                      </div>
+                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
+                        <i class="fi-like"></i>
+                      </div>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-medium-up">
+                      <div class="large-12 medium-12 small-12 columns container font-80 to-center">
+                        <strong>
+                          <%#= post.user.tag %>Web Dev
+                        </strong>
+                      </div>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom-mid border-top">
+                      <div class="large-8 medium-8 small-8 columns container-left created-at show-for-large-up">
+                        <%= time_ago_in_words(user.created_at) %> ago.
+                      </div>
+                      <div class="large-4 medium-12 small-12 columns container">
+                        <div class="large-4 medium-4 small-4 columns container icon">
+                          <% if current_user == user %>
+                            <%= link_to raw('<i class="fi-pencil"></i>'), edit_user_path(user) %>
+                          <% end %>
+                        </div>
+                        <div class="large-4 medium-4 small-4 columns container icon">
+                          <% if current_user.admin? && !current_user?(user) %>
+                              | <%= link_to raw('<i class="fi-trash"></i>'), user, method: :delete,
+                                  data: { confirm: "Are you sure?" } %>
+                          <% end %>
+                        </div>
+                        <div class="large-4 medium-4 small-4 columns container icon">
+                          <%= link_to raw('<i class="fi-comments"></i>'), user %>
+                        </div>
+                      </div>
+                    </div>
+                </div> <!-- .thumb -->
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
