@@ -14,7 +14,6 @@ describe "Static Pages" do
     let(:heading)     {'Talentcrops'}
     let(:page_title)  {''}
 
-    it_should_behave_like "all static pages"
     it { should_not have_title('| Home')}
 
     # describe "for signed-in users" do
@@ -57,11 +56,4 @@ describe "Static Pages" do
 
     it_should_behave_like "all static pages"     
   end
-
-  # before {visit root_path}
-  # it {should have_title(full_title('Help'))}
-  # it {should have_title(full_title('About Us'))}
-  # it {should have_title(full_title('Contact Us'))}
-  # it {should have_title(full_title('Sign Up'))}
-  
 end

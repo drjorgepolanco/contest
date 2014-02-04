@@ -45,7 +45,7 @@
             <ul class="dropdown">
               <li><%= link_to raw('<i class="fi-widget"></i>&nbsp;&nbsp;Edit Profile'), edit_user_path(current_user) %></li>
               <li><%= link_to raw('<i class="fi-lock"></i>&nbsp;&nbsp;Privacy'), root_path %></li>
-              <li><%= link_to raw('<i class="fi-power"></i>&nbsp;&nbsp;Sign Out'), signout_path, method: "delete" %></li>
+              <li><%= link_to raw('<i class="fi-power"></i>&nbsp;&nbsp;Sign out'), signout_path, method: "delete" %></li>
               <li class="divider"></li>
               <li><%= link_to raw('<i class="fi-info"></i>&nbsp;&nbsp;Help'), help_path %></li>
               <li><%= link_to raw('<i class="fi-flag"></i>&nbsp;&nbsp;Report Problem'), root_path %></a></li>
@@ -53,9 +53,9 @@
           </li>
         <% else %>
           <li class="divider"></li>
-          <li><%= link_to raw('<i class="fi-at-sign"></i>&nbsp;&nbsp;Sign In'), signin_path %></li>
+          <li><%= link_to raw('<i class="fi-at-sign"></i>&nbsp;&nbsp;Sign in'), signin_path %></li>
           <li class="divider"></li>
-          <li><%= link_to raw('<i class="fi-key"></i>&nbsp;&nbsp;Sign Up'), signup_path %></li>
+          <li><%= link_to raw('<i class="fi-key"></i>&nbsp;&nbsp;Sign up'), signup_path %></li>
         <% end %>
       </ul>
     </section>

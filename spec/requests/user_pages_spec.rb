@@ -12,42 +12,29 @@ describe "User Pages" do
       visit users_path
     end
 
-    it { should have_title('All users') }
-    it { should have_content('All users') }
-
-    describe "pagination" do
-
-      before(:all) { 30.times { FactoryGirl.create(:user) } }
-      after(:all)  { User.delete_all }
-
-      it { should have_selector('div.pagination') }
-
-      it "should list each user" do
-        User.paginate(page: 1).each do |user|
-          expect(page).to have_selector('li', text: user.first_name)
-        end
-      end
-    end
+    it { should have_title('Users') }
+    it { should have_content('Users') }
 
     describe "delete links" do
 
       it { should_not have_link('delete') }
 
-      describe "as an admin user" do
-        let(:admin) { FactoryGirl.create(:admin) }
-        before do
-          sign_in admin
-          visit users_path
-        end
+      # describe "as an admin user" do
+      #   let(:admin) { FactoryGirl.create(:admin) }
+      #   before do
+      #     sign_in admin
+      #     visit users_path
+      #   end
 
-        it { should have_link('delete', href: user_path(User.first)) }
-        it "should be able to delete another user" do
-          expect do
-            click_link('delete', match: :first)
-          end.to change(User, :count).by(-1)
-        end
-        it { should_not have_link('delete', href: user_path(admin)) }
-      end
+      #   it { should have_link('<i class="fi-trash"></i>', href: user_path(User.first)) }
+        
+      #   it "should be able to delete another user" do
+      #     expect do
+      #       click_link('<i class="fi-trash"></i>', match: :first)
+      #     end.to change(User, :count).by(-1)
+      #   end
+      #   it { should_not have_link('<i class="fi-trash"></i>', href: user_path(admin)) }
+      # end
     end
   end
 
@@ -62,8 +49,8 @@ describe "User Pages" do
         visit following_user_path(user)
       end
 
-      it { should have_title(full_title ('Following')) }
-      it { should have_selector('h3', text: 'Following') }
+      it { should have_title(full_title ('Followed Users')) }
+      it { should have_selector('h4', text: 'Followed Users') }
       it { should have_link(other_user.first_name, href: user_path(other_user)) }
     end
 
@@ -74,7 +61,7 @@ describe "User Pages" do
       end
 
       it { should have_title(full_title ("Followers")) }
-      it { should have_selector('h3', text: 'Followers') }
+      it { should have_selector('h4', text: 'Followers') }
       it { should have_link(user.first_name, href: user_path(user)) }
     end
   end
