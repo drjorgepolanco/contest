@@ -1,4 +1,22 @@
 Contest::Application.routes.draw do
+  # resources :challenges do
+  #   member do
+  #     get :posts
+  #   end
+  # end
+
+  resources :challenges do
+    resources :posts, controller: 'challenge_posts'
+  end
+
+  # resources :challenges do
+  #   resources :posts, controller: 'challenge_posts' do
+  #     member do
+  #       get :vote_for
+  #     end
+  #   end
+  # end
+
   resources :users do
     member do
       get :posts

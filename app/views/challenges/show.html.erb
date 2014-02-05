@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @challenge.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @challenge.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @challenge.description %>
+</p>
+
+<p>
+  <strong>Views:</strong>
+  <%= @challenge.views %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @challenge.tag %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @challenge.image %>
+</p>
+
+<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
+<%= link_to 'Back', challenges_path %>
+<%= link_to 'New Post', [:new, @contest, :post] %>

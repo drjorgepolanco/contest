@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113231908) do
+ActiveRecord::Schema.define(version: 20140205070238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts", force: true do |t|
+  create_table "challenges", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
@@ -27,6 +27,23 @@ ActiveRecord::Schema.define(version: 20140113231908) do
     t.datetime "updated_at"
   end
 
+  add_index "challenges", ["user_id", "created_at"], name: "index_challenges_on_user_id_and_created_at", using: :btree
+  add_index "challenges", ["user_id"], name: "index_challenges_on_user_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "views"
+    t.string   "tag"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "contest_id"
+    t.string   "contest_type"
+  end
+
+  add_index "posts", ["contest_id", "contest_type"], name: "index_posts_on_contest_id_and_contest_type", using: :btree
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 

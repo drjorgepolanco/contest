@@ -31,18 +31,11 @@ class PostsController < ApplicationController
           format.json { render action: 'show', status: :created, location: @post }
         else
           format.html { render action: 'new' }
+          # render 'static_pages/home'
           @feed_items = []
           format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
-
-    # if @post.save
-    #   flash[:success] = "Post created!"
-    #   redirect_to root_url
-    # else
-    #   @feed_items = []
-    #   render 'static_pages/home'
-    # end
   end
 
   def edit
@@ -66,7 +59,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
       format.html { redirect_to root_path }

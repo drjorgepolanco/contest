@@ -1,0 +1,40 @@
+<h1>Challenge Post Form </h1>
+
+<div class="large-12 medium-12 small-12 columns">
+  <h5 class="post-form-title"><strong>Add to Contest!</strong></h5>
+</div>
+
+<div class="large-12 medium-12 small-12 columns">
+  <%= form_for [@contest, @post] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="post-form-text">
+      <%= f.label "Your Post's Title", :class => "form-text" %>
+    </div>
+    <div class="post-form-field">
+      <%= f.text_field :title, :class => "form-field" %>
+    </div>
+
+    <div class="post-form-text">
+      <%= f.label "Paste your Image URL", :class => "form-text" %>
+    </div>
+    <div class="post-form-field">
+      <%= f.text_field :image, :class => "form-field" %>
+    </div>
+
+    <div class="post-form-text">
+      <%= f.label "About your Post", :class => "form-text" %>
+    </div>
+    <div class="post-form-field">
+      <%= f.text_area :description, :class => "form-field" %>
+    </div>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :contest_id, :value => @contest.id %>
+
+    <div class="post-form-button">
+      <%= f.submit "Dare!", :class => "button tiny right" %>
+    </div>
+
+  <% end %>
+</div>

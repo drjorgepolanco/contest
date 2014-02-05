@@ -1,0 +1,22 @@
+<h1>Challenge Form</h1>
+
+<%= form_for(@challenge) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label "Your Challenge's Title", :class => "posting-form-text" %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label "About your Challenge", :class => "posting-form-text" %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label "Paste the URL of the picture that will identify your Challenge", :class => "posting-form-text" %><br>
+    <%= f.text_field :image %>
+  </div>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit "Create Challenge!", :class => "button right"%>
+  </div>
+<% end %>
