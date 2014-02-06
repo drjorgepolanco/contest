@@ -19,6 +19,7 @@ Contest::Application.routes.draw do
 
   resources :users do
     member do
+      get :challenges
       get :posts
       get :following, :followers
     end

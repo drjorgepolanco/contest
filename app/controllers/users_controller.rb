@@ -12,8 +12,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @challenges = @user.challenges
     @feed_items = current_user.feed
-    @following = @user.followed_users.limit(6)
+    @followers = @user.followers.limit(6)
   end
 
   def new
@@ -69,6 +70,12 @@ class UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts
+    @feed_items = @user.feed
+  end
+
+  def challenges
+    @user = User.find(params[:id])
+    @challenges = @user.challenges
     @feed_items = @user.feed
   end
   

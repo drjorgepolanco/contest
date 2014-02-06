@@ -3,7 +3,7 @@
     <div class="large-12 medium-12 small-12 columns container">
       <div class="large-3 medium-3 small-3 columns digit">
         <strong>
-          12
+          <%= link_to @user.challenges.count, challenges_user_path(@user) %>
         </strong>
       </div>
       <div class="large-3 medium-3 small-3 columns digit">
@@ -21,7 +21,7 @@
         </strong>
     </div>
     <div class="large-12 medium-12 small-12 columns container">
-      <div class="large-3 medium-3 small-3 columns text">contests</div>
+      <div class="large-3 medium-3 small-3 columns text">challenges</div>
       <div class="large-3 medium-3 small-3 columns text">posts</div>
       <div class="large-3 medium-3 small-3 columns text">following</div>
       <div class="large-3 medium-3 small-3 columns text">followers</div>

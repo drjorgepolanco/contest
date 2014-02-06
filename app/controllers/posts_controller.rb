@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
       respond_to do |format|
         if @post.save
-          format.html { redirect_to @post, notice: 'Your Post was successfully created.' }
+          format.html { redirect_to @post, notice: "#{@post.title.titleize} was successfully created." }
           format.json { render action: 'show', status: :created, location: @post }
         else
           format.html { render action: 'new' }
@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       if @post.update_attributes(post_params)
-        format.html { redirect_to @post, :notice => "Post succesfully updated." }
+        format.html { redirect_to @post, :notice => "#{@post.title.titleize} was succesfully updated." }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

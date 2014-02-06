@@ -18,6 +18,11 @@ body {
   padding-top: 4px;
 }
 
+.container-top-mid-half {
+  padding: 0px;
+  padding-top: 2px;
+}
+
 .container-top-bottom {
   padding: 0px;
   padding-top: 8px;
@@ -42,6 +47,11 @@ body {
   padding: 0px;
   padding-top: 4px;
   padding-bottom: 4px;
+}
+
+.container-top-bottom-2x {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .container-left-right-mid {
@@ -73,8 +83,17 @@ body {
   padding-bottom: 8px;
 }
 
+.column-top-bottom-2x {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
 .column-top-mid {
   padding-top: 4px;
+}
+
+.column-top-mid-half {
+  padding-top: 2px;
 }
 
 
@@ -110,9 +129,18 @@ body {
 
 
 /* IMAGE */
+.image-container {
+  padding: 0px;
+  background-color: #000;
+  -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6);
+  -moz-box-shadow:    0px 2px 10px rgba(21, 21, 21, 0.6);
+  box-shadow:         0px 2px 10px rgba(21, 21, 21, 0.6);
+}
 
 .image {
   padding: 0px;
+  display: block;
+  margin: 0 auto;
   -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6);
   -moz-box-shadow:    0px 2px 10px rgba(21, 21, 21, 0.6);
   box-shadow:         0px 2px 10px rgba(21, 21, 21, 0.6);
@@ -166,3 +194,29 @@ body {
   color: #333;
 }
 
+
+/* COLOR */
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000;
+}
+
+.dark-grey {
+  color: #333;
+}
+
+.grey {
+  color: #666;
+}
+
+.light-grey {
+  color: #999;
+}
+
+.xtra-light-grey {
+  color: #ccc;
+}

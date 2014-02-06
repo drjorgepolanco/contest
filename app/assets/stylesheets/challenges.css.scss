@@ -1,3 +1,6 @@
-// Place all the styles related to the Challenges controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.contest-form {
+  background-color: #333;
+  -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6);
+  -moz-box-shadow:    0px 2px 10px rgba(21, 21, 21, 0.6);
+  box-shadow:         0px 2px 10px rgba(21, 21, 21, 0.6);
+}

@@ -1,79 +1,11 @@
-<% provide(:title, "Posts") %>
+<% provide(:title, @title) %>
 
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-12 medium-12 small-12 columns">
-      <h4 class="main-title"><strong><i class="fi-page-filled"></i> Posts</strong></h4>
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @title %></strong></h4>
     </div>
   </div>
 </div>
-
-<div class="large-12 medium-12 small-12 columns">
-  <% posts = @contest.posts %>
-    <div id="wrapper">
-        <div id="columns">
-            <% posts.each do |post| %>                
-                <div class="thumb">
-                    <div class="large-12 medium-12 small-12 columns container">
-                      <%= link_to image_tag(post.image, :class => "image"), post %>
-                    </div>
-                    <div class="large-12 medium-12 small-12 columns container-top-bottom thumb-title">
-                      <strong><%= link_to post.title, post %></strong>
-                    </div>
-                    <div class="large-12 medium-12 small-12 columns container sash show-for-medium-up">
-                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
-                        <i class="fi-page-filled"></i>
-                      </div>
-                      <div class="large-4 medium-4 small-4 columns icon">
-                      </div>
-                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
-                        <i class="fi-like"></i>
-                      </div>
-                    </div>
-                    <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-medium-up">
-                      <div class="large-3 medium-3 small-3 columns container-left">
-                        <%= link_to image_tag(post.user.profile_pic, :class => "image"), user_path(post.user) %>
-                      </div>
-                      <div class="large-9 medium-9 small-9 columns container-left">
-                        <div class="large-12 medium-12 small-12 columns container font-80">
-                            <strong>
-                              <%= link_to "#{post.user.first_name.capitalize} #{post.user.last_name.capitalize}", user_path(post.user) %>
-                            </strong>
-                          </div>
-                          <div class="large-12 medium-12 small-12 columns container font-70">
-                            <strong>
-                              <%#= post.user.tag %>Web Dev
-                            </strong>
-                          </div>
-                          <div class="large-12 medium-12 small-12 columns container category">
-                            <strong>Category
-                              <%#= post.category %>
-                            </strong>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="large-12 medium-12 small-12 columns container-top-bottom-mid border-top">
-                      <div class="large-8 medium-8 small-8 columns container-left created-at show-for-large-up">
-                        <%= time_ago_in_words(post.created_at) %> ago.
-                      </div>
-                      <div class="large-4 medium-12 small-12 columns container">
-                        <div class="large-4 medium-4 small-4 columns container-right icon">
-                          <% if current_user == post.user %>
-                            <%= link_to raw('<i class="fi-pencil"></i>'), edit_post_path(post) %>
-                          <% end %>
-                        </div>
-                        <div class="large-4 medium-4 small-4 columns container-right icon">
-                          <% if current_user == post.user %>
-                            <%= link_to raw('<i class="fi-trash"></i>'), post, method: :delete, data: { confirm: "Are you sure?" }, title: post.title %>
-                          <% end %>
-                        </div>
-                        <div class="large-4 medium-4 small-4 columns container-right icon">
-                          <%= link_to raw('<i class="fi-comments"></i>'), post %>
-                        </div>
-                      </div>
-                    </div>
-                </div> <!-- .thumb -->
-            <% end %>
-        </div>
-    </div>
-</div>
+<% posts = @contest.posts %>
+<%= render 'shared/post' %>

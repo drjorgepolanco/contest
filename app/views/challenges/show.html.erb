@@ -1,35 +1,61 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @challenge.title) %>
 
-<p>
-  <strong>User:</strong>
-  <%= @challenge.user %>
-</p>
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-10 medium-10 small-10 columns">
+      <h4 class="main-title"><strong><i class="fi-star"></i> <%= @challenge.title.titleize %></strong></h4>
+    </div>
+    <div class="large-2 medium-2 small-2 columns container">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-6 medium-6 small-6 columns container-top to-right top-icon">
+          <% if current_user == @challenge.user %>
+            <%= link_to raw('<i class="fi-pencil"></i>'), edit_challenge_path(@challenge) %>
+          <% end %>
+        </div>
+        <div class="large-6 medium-6 small-6 columns container-top to-center top-icon">
+          <% if current_user == @challenge.user %>
+            <%= link_to raw('<i class="fi-trash"></i>'), challenge_path, method: :delete, data: { confirm: "Are you sure?" }, title: @challenge.title.titleize %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @challenge.title %>
-</p>
+<div class="large-12 medium-12 small-12 columns container">
+  <div class="large-12 medium-12 small-12 columns container-top-bottom-2x">
+    <div class="large-3 medium-3 small-3 columns">
+      <%= image_tag @challenge.image, class: "image" %>
+    </div>
+    <div class="large-3 medium-3 small-3 columns container box">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-3 medium-3 small-3 columns container">
+          <%= image_tag @challenge.user.profile_pic %>
+        </div>
+        <div class="large-9 medium-9 small-9 columns column-top">
+          <strong><%= link_to full_name(@challenge.user).titleize, user_path(@challenge.user) %></strong>
+        </div>
+      </div>
+    </div>
+    <div class="large-3 medium-3 small-3 columns">
+    </div>
+    <div class="large-3 medium-3 small-3 columns">
+      <%= render 'challenge_posts/form' %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @challenge.description %>
-</p>
+<div class="large-12 medium-12 small-12 columns container main-sash">
+</div>
 
-<p>
-  <strong>Views:</strong>
-  <%= @challenge.views %>
-</p>
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @title %></strong></h4>
+    </div>
+  </div>
+</div>
+<% @posts = @contest.posts %>
+<%= render 'shared/post' %>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @challenge.tag %>
-</p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @challenge.image %>
-</p>
-
-<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
-<%= link_to 'Back', challenges_path %>
-<%= link_to 'New Post', [:new, @contest, :post] %>

@@ -3,7 +3,7 @@ class Challenge < ActiveRecord::Base
   has_many :posts, as: :contest
   default_scope -> { order('created_at DESC') }
   validates :image, presence: true
-  validates :title, presence: true, length: { maximum: 70 }
+  validates :title, presence: true, length: { maximum: 50 }
   validates :user_id, presence: true
 
 

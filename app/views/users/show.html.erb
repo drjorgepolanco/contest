@@ -2,7 +2,7 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-8 medium-8 small-8 columns left">
-      <h4 class="main-title"><strong><i class="fi-torso"></i> <%= full_name(@user) %></strong></h4>
+      <h4 class="main-title"><strong><i class="fi-torso"></i> <%= full_name(@user).titleize %></strong></h4>
     </div>
 
     <div class="large-4 medium-4 small-4 columns right">
@@ -13,8 +13,8 @@
 
 <div class="large-12 medium-12 small-12 columns container-top">
   <div class="large-5 medium-6 small-6 columns">
-    <div class="large-12 medium-12 small-12 columns image">
-      <%= image_tag @user.profile_pic %>
+    <div class="large-12 medium-12 small-12 columns image-container">
+      <%= image_tag @user.profile_pic, class: "image" %>
     </div>
 
     <div class="large-12 medium-12 small-12 columns container-top box">
@@ -45,15 +45,17 @@
         Contrary to popular belief, Lorem Ipsum is not simply random text.
       </div>
     </div>
-
+    
+    <%# if @user.info.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom font-80">
         <strong>About <%= @user.first_name.capitalize %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
-        It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+        <%#= @user.info %>
       </div>
     </div>
+    <%# end %>
   </div>
 
   <div class="large-5 medium-6 small-6 columns">
@@ -61,18 +63,15 @@
       <%= render 'stats' %>
     </div>
   
-  <% if @following.try(:any?) %>
+  <% if @followers.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom container font-80">
-        <div class="large-8 medium-8 small-8 columns to-left">
-          <strong><%= @user.first_name.capitalize %> follows:</strong>
-        </div>
-        <div class="large-4 medium-4 small-4 columns to-right">
-          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
+        <div class="large-12 medium-12 small-12 columns to-left">
+          <strong><%= link_to "#{@user.first_name.capitalize} Followers:", followers_user_path(@user) %></strong>
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container-left-right-mid border">
-          <% @following.each do |user| %>
+          <% @followers.each do |user| %>
             <div class="large-2 medium-2 small-2 columns row-image">
               <div class="large-12 medium-12 small-12 columns image">
                 <%= link_to image_tag(user.profile_pic), user %>
@@ -86,12 +85,8 @@
   <% if @feed_items.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom container font-80">
-
-        <div class="large-8 medium-8 small-8 columns to-left">
-          <strong>Followed by <%= @user.first_name.capitalize %>:</strong>
-        </div>
-        <div class="large-4 medium-4 small-4 columns to-right">
-          <%= link_to raw('<i class="fi-torsos-male-female"></i>&nbsp;&nbsp;see all'), following_user_path(@user) %> 
+        <div class="large-12 medium-12 small-12 columns to-left">
+          <strong><%= link_to "#{@user.first_name.capitalize} Follows:", following_user_path(@user)  %></strong>
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container border">
@@ -126,7 +121,7 @@
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">
     <div class="large-10 medium-10 small-10 columns left">
-      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @user.first_name %>'s posts:</strong></h4>
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @user.first_name.capitalize %>'s posts:</strong></h4>
     </div>
   <% if @user.posts.any? %>
     <div class="large-2 medium-2 small-2 columns to-right">
@@ -135,76 +130,6 @@
   </div>
 </div>
 
-<div class="large-12 medium-12 small-12 columns">
-    <% posts = @user.posts %>
-      <div id="wrapper">
-          <div id="columns">
-              <% posts.each do |post| %>                
-                  <div class="thumb">
-                      <div class="large-12 medium-12 small-12 columns container">
-                        <%= link_to image_tag(post.image, :class => "image"), post %>
-                      </div>
-                      <div class="large-12 medium-12 small-12 columns container-top-bottom thumb-title">
-                        <strong><%= link_to post.title, post %></strong>
-                      </div>
-                      <div class="large-12 medium-12 small-12 columns container sash show-for-medium-up">
-                        <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
-                          <i class="fi-page-filled"></i>
-                        </div>
-                        <div class="large-4 medium-4 small-4 columns icon">
-                        </div>
-                        <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
-                          <i class="fi-like"></i>
-                        </div>
-                      </div>
-                      <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-medium-up">
-                        <div class="large-3 medium-3 small-3 columns container-left">
-                          <%= link_to image_tag(post.user.profile_pic, :class => "image"), user_path(post.user) %>
-                        </div>
-                        <div class="large-9 medium-9 small-9 columns container-left">
-                          <div class="large-12 medium-12 small-12 columns container font-80">
-                              <strong>
-                                <%= link_to "#{post.user.first_name.capitalize} #{post.user.last_name.capitalize}", user_path(post.user) %>
-                              </strong>
-                            </div>
-                            <div class="large-12 medium-12 small-12 columns container font-70">
-                              <strong>
-                                <%#= post.user.tag %>Web Dev
-                              </strong>
-                            </div>
-                            <div class="large-12 medium-12 small-12 columns container category">
-                              <strong>Category
-                                <%#= post.category %>
-                              </strong>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="large-12 medium-12 small-12 columns container-top-bottom-mid border-top">
-                        <div class="large-8 medium-8 small-8 columns container-left created-at show-for-large-up">
-                          <%= time_ago_in_words(post.created_at) %> ago.
-                        </div>
-                        <div class="large-4 medium-12 small-12 columns container">
-                          <div class="large-4 medium-4 small-4 columns container-right icon">
-                            <% if current_user == post.user %>
-                              <%= link_to raw('<i class="fi-pencil"></i>'), edit_post_path(post) %>
-                            <% end %>
-                          </div>
-                          <div class="large-4 medium-4 small-4 columns container-right icon">
-                            <% if current_user == post.user %>
-                              <%= link_to raw('<i class="fi-trash"></i>'), post, method: :delete, data: { confirm: "Are you sure?" }, title: post.title %>
-                            <% end %>
-                          </div>
-                          <div class="large-4 medium-4 small-4 columns container-right icon">
-                            <%= link_to raw('<i class="fi-comments"></i>'), post %>
-                          </div>
-                        </div>
-                      </div>
-                  </div> <!-- .thumb -->
-              <% end %>
-          </div>
-      </div>
-  <% end %>
-</div>
-
-
-        
+<% @posts = @user.posts %>
+<%= render 'shared/post' %>
+<% end %>
