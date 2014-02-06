@@ -1,17 +1,27 @@
-<h2>Share a Post!</p>
-<%= form_for(@post) do |f| %>
+<div class="large-12 medium-12 small-12 columns column-top-bottom-2x">
+  <div class="large-12 medium-12 small-12 columns column-top-bottom box">
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
-  <%= render 'shared/error_messages', object: f.object %>
+        <div>
+          <%= f.label :title, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :title, :placeholder => "What's the name of your Post?" %>
+        </div>
 
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Write your post's title..." %>
+        <div>
+          <%= f.label :image, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :image, :placeholder => "Paste the URL of the picture that will identify your Post" %>
+        </div>
 
-    <%= f.label :description %>
-    <%= f.text_area :description, placeholder: "Tell me about your post..." %>
-
-    <%= f.label :image %>
-    <%= f.text_field :image, placeholder: "Paste your image link..." %>
-
-  <%= f.submit "Done", class: "button" %>
-
-<% end %>
+        <div>
+          <%= f.label :description, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_area :description, :placeholder => "Tell me about your Post..." %>
+        </div>
+        
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class="actions">
+          <%= f.submit "Done!", :class => "button right"%>
+        </div>
+      <% end %>
+  </div>
+</div>

@@ -24,22 +24,45 @@
 
 <div class="large-12 medium-12 small-12 columns container">
   <div class="large-12 medium-12 small-12 columns container-top-bottom-2x">
-    <div class="large-3 medium-3 small-3 columns">
+    <div class="large-3 medium-3 small-6 columns">
       <%= image_tag @challenge.image, class: "image" %>
     </div>
-    <div class="large-3 medium-3 small-3 columns container box">
-      <div class="large-12 medium-12 small-12 columns container">
+    <div class="large-3 medium-3 small-3 columns container show-for-medium-up">
+      <div class="large-12 medium-12 small-12 columns container box">
         <div class="large-3 medium-3 small-3 columns container">
-          <%= image_tag @challenge.user.profile_pic %>
+          <%= link_to image_tag(@challenge.user.profile_pic, class: "image"), user_path(@challenge.user) %>
         </div>
         <div class="large-9 medium-9 small-9 columns column-top">
-          <strong><%= link_to full_name(@challenge.user).titleize, user_path(@challenge.user) %></strong>
+          <div class="large-12 medium-12 small-12 columns container">
+            <strong><%= link_to full_name(@challenge.user).titleize, user_path(@challenge.user) %></strong>
+          </div>
+          <div class="large-12 medium-12 small-12 columns container-top-mid font-80 grey">
+            <%= @challenge.user.tag.titleize %>
+          </div>
         </div>
       </div>
+      <div class="large-12 medium-12 small-12 columns box">
+        <div class="large-6 medium-6 small-6 columns container-top-bottom font-80 dark-grey to-left">
+          <i class="fi-eye"></i> 3,546
+        </div>
+        <div class="large-6 medium-6 small-6 columns container-top-bottom font-80 dark-grey to-right">
+          <i class="fi-like"></i> 88
+        </div>
+      </div>
+      <%# if @challenge.description != nil %>
+      <div class="large-12 medium-12 small-12 columns container box">
+        <div class="large-12 medium-12 small-12 columns column-top-bottom font-90">
+          <strong>About <%= @challenge.title.titleize %></strong>
+        </div>
+        <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
+          <%= @challenge.description %>
+        </div>
+      </div>
+      <%# end %>
     </div>
-    <div class="large-3 medium-3 small-3 columns">
+    <div class="large-3 medium-3 small-3 columns show-for-medium-up">
     </div>
-    <div class="large-3 medium-3 small-3 columns">
+    <div class="large-3 medium-3 small-6 columns">
       <%= render 'challenge_posts/form' %>
     </div>
   </div>

@@ -1,22 +1,29 @@
-<h1>Challenge Form</h1>
+<div class="large-12 medium-12 small-12 columns column-top-bottom-2x">
+  <div class="large-12 medium-12 small-12 columns column-top-bottom box">
+      <%= form_for(@challenge) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
-<%= form_for(@challenge) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+        <div>
+          <%= f.label :title, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :title, :placeholder => "What's the name of your Challenge?" %>
+        </div>
 
-  <div class="field">
-    <%= f.label "Your Challenge's Title", :class => "posting-form-text" %><br>
-    <%= f.text_field :title %>
+        <div>
+          <%= f.label :image, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :image, :placeholder => "Paste the URL of the picture that will identify your Challenge" %>
+        </div>
+
+        <div>
+          <%= f.label :description, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_area :description, :placeholder => "Tell me about your Challenge..." %>
+        </div>
+        
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class="actions">
+          <%= f.submit "Done!", :class => "button right"%>
+        </div>
+      <% end %>
   </div>
-  <div class="field">
-    <%= f.label "About your Challenge", :class => "posting-form-text" %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label "Paste the URL of the picture that will identify your Challenge", :class => "posting-form-text" %><br>
-    <%= f.text_field :image %>
-  </div>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="actions">
-    <%= f.submit "Create Challenge!", :class => "button right"%>
-  </div>
-<% end %>
+</div>
+
+

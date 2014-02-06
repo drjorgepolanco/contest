@@ -20,6 +20,7 @@ class ChallengesController < ApplicationController
   end
 
   def edit
+    @feed_items = current_user.feed
   end
 
   def create

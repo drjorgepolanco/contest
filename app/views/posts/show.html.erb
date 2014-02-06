@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <% if @post.description.try(:any?) %>
+    <%# if @post.description != nil %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom font-90">
         <strong>About <%= @post.title.titleize %></strong>
@@ -55,7 +55,7 @@
         <%= @post.description %>
       </div>
     </div>
-    <% end %>
+    <%# end %>
   </div>
 
   <div class="large-5 medium-6 small-6 columns">
@@ -69,7 +69,7 @@
           <strong><%= link_to full_name(@user) %></strong>
         </div>
         <div class="large-12 medium-12 small-12 columns column-top-mid font-80">
-          <%#= @user.tag %>Web Dev
+          <%= @user.tag %>
         </div>
         <div class="large-12 medium-12 small-12 columns">
         </div>

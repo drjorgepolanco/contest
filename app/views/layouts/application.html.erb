@@ -15,14 +15,6 @@
     </div>
 
     <div class="row">
-      <div class="large-12 medium-12 small-12 columns">
-        <% flash.each do |key, value| %>          
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="row">
       <div id="body" class="large-12 medium-12 small-12 columns container">
       <% if signed_in? %>
         <div id="dashboard" class="large-2 medium-2 columns container left show-for-large-up">
@@ -32,25 +24,26 @@
           <%= render 'shared/feed' %>
         </div>
         <div id="main" class="large-8 medium-12 small-12 columns large-centered container">
+          <div class="large-12 medium-12 small-12 columns">
+            <% flash.each do |key, value| %>          
+              <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+            <% end %>
+          </div>
           <%= yield %>
+          <div class="large-12 medium-12 small-12 columns container">
+            <%= render 'layouts/footer' %>
+          </div>
         </div>
       <% else %>
         <div id="main" class="large-12 medium-12 small-12 columns large-centered container">
           <%= yield %>
+          <%= render 'layouts/footer' %>
         </div>
       <% end %>
       </div>
     </div>
 
-    <div class="row">
-      <div class="large-12 medium-12 small-12 columns">
-        <%= render 'layouts/footer' %>
-      </div>
-    </div>
-
     <%= javascript_include_tag "application" %>
-    
   </body>
-
 </html>
 
