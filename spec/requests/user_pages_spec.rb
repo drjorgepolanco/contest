@@ -70,7 +70,10 @@ describe "User Pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+    before do
+      sign_in user
+      visit user_path(user)
+    end
 
     it { should have_content(user.profile_pic) }
 
@@ -200,11 +203,12 @@ describe "User Pages" do
 
     describe "with valid information" do
       before do
-        fill_in "First name",         with: "Jorge"
-        fill_in "Last name",          with: "Polanco"
-        fill_in "Email",              with: "dr.jorgepolanco@gmail.com"
-        fill_in "Password",           with: "foobar"
-        fill_in "Password confirmation",       with: "foobar"
+        fill_in "First name",                   with: "Jorge"
+        fill_in "Last name",                    with: "Polanco"
+        fill_in "Tag",                          with: "Web Developer"         
+        fill_in "Email",                        with: "dr.jorgepolanco@gmail.com"
+        fill_in "Password",                     with: "foobar"
+        fill_in "Password confirmation",        with: "foobar"
       end
 
       it "should create a user" do 
@@ -243,10 +247,12 @@ describe "User Pages" do
     describe "with valid information" do
       let(:new_first_name) { "Juan" }
       let(:new_last_name) { "Perez" }
+      let(:new_tag) { "Web Developer" }
       let(:new_email) { "info@talentcrops.com" }
       before do
         fill_in "First name",         with: new_first_name
         fill_in "Last name",          with: new_last_name
+        fill_in "Tag",                with: new_tag
         fill_in "Email",              with: new_email
         fill_in "Password",           with: user.password
         fill_in "Confirm Password",   with: user.password

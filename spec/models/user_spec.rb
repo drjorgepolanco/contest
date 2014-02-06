@@ -4,7 +4,7 @@ describe User do
 
   before do
     @user = User.new(first_name: "Jorge", last_name: "Cukito", email: "drjorgepolanco@gmail.com", 
-                            password: "foobar", password_confirmation: "foobar")
+                            tag: "Web Developer", password: "foobar", password_confirmation: "foobar")
   end
 
   # , date_of_birth: 07/31/1983
@@ -13,6 +13,7 @@ describe User do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
+  it { should respond_to(:tag) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -48,6 +49,11 @@ describe User do
 
   describe "when last name is not present" do
     before { @user.last_name = '' }
+    it { should_not be_valid }
+  end
+
+  describe "when tag is not present" do
+    before { @user.tag = '' }
     it { should_not be_valid }
   end
 
