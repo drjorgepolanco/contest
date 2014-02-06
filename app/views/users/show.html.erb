@@ -46,16 +46,16 @@
       </div>
     </div>
     
-    <%# if @user.info.try(:any?) %>
+  <% if @user.info.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box">
       <div class="large-12 medium-12 small-12 columns column-top-bottom font-80">
         <strong>About <%= @user.first_name.capitalize %></strong>
       </div>
       <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
-        <%#= @user.info %>
+        <%= @user.info %>
       </div>
     </div>
-    <%# end %>
+    <% end %>
   </div>
 
   <div class="large-5 medium-6 small-6 columns">
