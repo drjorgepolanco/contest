@@ -157,32 +157,6 @@ describe "User Pages" do
     end
   end
 
-
-  # describe "for signed-in users" do
-  #   let(:user) { FactoryGirl.create(:user) }
-  #   before do
-  #     FactoryGirl.create(:post, user: user, title: "Lorem Ipsum", description: "Color sit amet makagrano", image: "https://scontent-a-dfw.xx.fbcdn.net/hphotos-prn1/1531956_10151888749228946_1983280094_n.jpg")
-  #     FactoryGirl.create(:post, user: user, title: "Ipsum Lorem", description: "Makagrano amet sit color", image: "https://scontent-b-dfw.xx.fbcdn.net/hphotos-prn2/1549485_10151888740363946_1938070629_n.jpg")
-  #     sign_in user
-  #     visit user_path
-  #   end
-
-  #   describe "the user's feed" do
-  #     let(:user) { FactoryGirl.create(:user) }
-  #     before do
-  #       FactoryGirl.create(:post, user: user, title: "Lorem Ipsum", description: "Color sit amet makagrano", image: "https://scontent-a-dfw.xx.fbcdn.net/hphotos-prn1/1531956_10151888749228946_1983280094_n.jpg")
-  #       FactoryGirl.create(:post, user: user, title: "Ipsum Lorem", description: "Makagrano amet sit color", image: "https://scontent-b-dfw.xx.fbcdn.net/hphotos-prn2/1549485_10151888740363946_1938070629_n.jpg")
-  #     end
-
-  #     user.feed.each do |item|
-  #       expect(page).to have_selector("li##{item.id}", text: item.content)
-  #     end
-  #   end
-
-    
-  # end
-  # end
-
   describe "signup" do
     before { visit signup_path }
 
