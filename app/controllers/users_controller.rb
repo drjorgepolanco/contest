@@ -78,6 +78,12 @@ class UsersController < ApplicationController
     @challenges = @user.challenges
     @feed_items = @user.feed
   end
+
+  def polls
+    @user = User.find(params[:id])
+    @polls = @user.polls
+    @feed_items = @user.feed
+  end
   
   private
 

@@ -29,6 +29,15 @@
 
           <li class="divider"></li>
           <li class="has-dropdown">
+            <%= link_to raw('<i class="fi-graph-bar"></i>&nbsp;&nbsp;Polls'), polls_path %>
+            <ul class="dropdown">
+              <li><%= link_to raw('<i class="fi-graph-bar"></i>&nbsp;&nbsp;New Poll'), new_poll_path %></li>
+              <li><%= link_to raw('<i class="fi-graph-bar"></i>&nbsp;&nbsp;All Polls'), polls_path %></li>
+            </ul>
+          </li>
+
+          <li class="divider"></li>
+          <li class="has-dropdown">
             <%= link_to raw('<i class="fi-page-filled"></i>&nbsp;&nbsp;Posts'), posts_path %>
             <ul class="dropdown">
               <li><%= link_to raw('<i class="fi-page-filled"></i>&nbsp;&nbsp;New Post'), new_post_path %></li>

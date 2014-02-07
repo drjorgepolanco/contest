@@ -1,0 +1,44 @@
+<% if @contest.user == current_user %>
+<div class="large-12 medium-12 small-12 columns column-top-bottom contest-form">
+  <div class="large-12 medium-12 small-12 columns">
+    <h6 class="to-center white"><strong>Add to Contest!</strong></h6>
+  </div>
+
+  <div class="large-12 medium-12 small-12 columns container">
+    <%= form_for [@contest, @post] do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div class="large-12 medium-12 small-12 columns container font-70">
+        <%= f.label :title, :class => "xtra-light-grey" %>
+      </div>
+
+      <div>
+        <%= f.text_field :title, :placeholder => "Title your Post" %>
+      </div>
+
+      <div class="large-12 medium-12 small-12 columns container font-70">
+        <%= f.label :image, :class => "xtra-light-grey" %>
+      </div>
+
+      <div>
+        <%= f.text_field :image, :placeholder => "Paste Image URL" %>
+      </div>
+
+      <div class="large-12 medium-12 small-12 columns container font-70">
+        <%= f.label :description, :class => "xtra-light-grey" %>
+      </div>
+
+      <div>
+        <%= f.text_area :description, :placeholder => "Tell me about your Post" %>
+      </div>
+
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :contest_id, :value => @contest.id %>
+
+      <div>
+        <%= f.submit "Dare!", :class => "button tiny right" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

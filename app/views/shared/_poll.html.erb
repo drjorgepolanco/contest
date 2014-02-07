@@ -1,0 +1,68 @@
+<div class="large-12 medium-12 small-12 columns">
+    <div id="wrapper">
+        <div id="columns">
+            <% @polls.each do |poll| %>                
+                <div class="thumb">
+                    <div class="large-12 medium-12 small-12 columns container">
+                      <%= link_to image_tag(poll.image, :class => "image"), poll %>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom thumb-title">
+                      <strong><%= link_to poll.title, poll %></strong>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container sash show-for-medium-up">
+                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
+                        <i class="fi-page-filled"></i>
+                      </div>
+                      <div class="large-4 medium-4 small-4 columns icon">
+                      </div>
+                      <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
+                        <i class="fi-like"></i>
+                      </div>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-medium-up">
+                      <div class="large-3 medium-3 small-3 columns container-left">
+                        <%= link_to image_tag(poll.user.profile_pic, :class => "image"), user_path(poll.user) %>
+                      </div>
+                      <div class="large-9 medium-9 small-9 columns container-left">
+                        <div class="large-12 medium-12 small-12 columns container-top-mid font-80">
+                            <strong>
+                              <%= link_to "#{poll.user.first_name.capitalize} #{poll.user.last_name.capitalize}", user_path(poll.user) %>
+                            </strong>
+                          </div>
+                          <div class="large-12 medium-12 small-12 columns container column-top-mid-half dark-grey font-70">
+                            <strong>
+                              <%#= poll.user.tag %>Web Dev
+                            </strong>
+                          </div>
+                          <div class="large-12 medium-12 small-12 columns container font-70 grey column-top-mid">
+                            <strong>Category
+                              <%#= poll.category %>
+                            </strong>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns container-top-bottom-mid border-top">
+                      <div class="large-8 medium-8 small-8 columns container-left created-at show-for-large-up">
+                        <%= time_ago_in_words(poll.created_at) %> ago.
+                      </div>
+                      <div class="large-4 medium-12 small-12 columns container">
+                        <div class="large-4 medium-4 small-4 columns container-right icon">
+                          <% if current_user == poll.user %>
+                            <%= link_to raw('<i class="fi-pencil"></i>'), edit_poll_path(poll) %>
+                          <% end %>
+                        </div>
+                        <div class="large-4 medium-4 small-4 columns container-right icon">
+                          <% if current_user == poll.user %>
+                            <%= link_to raw('<i class="fi-trash"></i>'), poll, method: :delete, data: { confirm: "Are you sure?" }, title: poll.title %>
+                          <% end %>
+                        </div>
+                        <div class="large-4 medium-4 small-4 columns container-right icon">
+                          <%= link_to raw('<i class="fi-comments"></i>'), poll %>
+                        </div>
+                      </div>
+                    </div>
+                </div> <!-- .thumb -->
+            <% end %>
+        </div>
+    </div>
+</div>

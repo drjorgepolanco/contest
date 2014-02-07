@@ -1,0 +1,27 @@
+<div class="large-12 medium-12 small-12 columns column-top-bottom-2x">
+  <div class="large-12 medium-12 small-12 columns column-top-bottom box">
+      <%= form_for(@poll) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div>
+          <%= f.label :title, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :title, :placeholder => "What's the name of your Poll?" %>
+        </div>
+
+        <div>
+          <%= f.label :image, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_field :image, :placeholder => "Paste the URL of the picture that will identify your Poll" %>
+        </div>
+
+        <div>
+          <%= f.label :description, :class => "dark-grey container-top margin-0" %><br>
+          <%= f.text_area :description, :placeholder => "Tell me about your Poll..." %>
+        </div>
+        
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class="actions">
+          <%= f.submit "Done", :class => "button right"%>
+        </div>
+      <% end %>
+  </div>
+</div>

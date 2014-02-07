@@ -1,0 +1,11 @@
+<% provide(:title, full_name(@user)) %>
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= full_name(@user) %>'s Polls</strong></h4>
+    </div>
+  </div>
+</div>
+
+<% polls = @user.polls %>
+<%= render 'shared/poll' %>

@@ -1,0 +1,86 @@
+<% provide(:title, @poll.title) %>
+
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-10 medium-10 small-10 columns">
+      <h4 class="main-title"><strong><i class="fi-graph-bar"></i> <%= @poll.title.titleize %></strong></h4>
+    </div>
+    <div class="large-2 medium-2 small-2 columns container">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-6 medium-6 small-6 columns container-top to-right top-icon">
+          <% if current_user == @poll.user %>
+            <%= link_to raw('<i class="fi-pencil"></i>'), edit_poll_path(@poll) %>
+          <% end %>
+        </div>
+        <div class="large-6 medium-6 small-6 columns container-top to-center top-icon">
+          <% if current_user == @poll.user %>
+            <%= link_to raw('<i class="fi-trash"></i>'), poll_path, method: :delete, data: { confirm: "Are you sure?" }, title: @poll.title.titleize %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="large-12 medium-12 small-12 columns container">
+  <div class="large-12 medium-12 small-12 columns container-top-bottom-2x">
+    <div class="large-3 medium-3 small-6 columns">
+      <%= image_tag @poll.image, class: "image" %>
+    </div>
+    <div class="large-3 medium-3 small-3 columns container show-for-medium-up">
+      <div class="large-12 medium-12 small-12 columns container box">
+        <div class="large-3 medium-3 small-3 columns container">
+          <%= link_to image_tag(@poll.user.profile_pic, class: "image"), user_path(@poll.user) %>
+        </div>
+        <div class="large-9 medium-9 small-9 columns column-top">
+          <div class="large-12 medium-12 small-12 columns container">
+            <strong><%= link_to full_name(@poll.user).titleize, user_path(@poll.user) %></strong>
+          </div>
+          <div class="large-12 medium-12 small-12 columns container-top-mid font-80 grey">
+            <%= @poll.user.tag.titleize %>
+          </div>
+        </div>
+      </div>
+      <div class="large-12 medium-12 small-12 columns box">
+        <div class="large-6 medium-6 small-6 columns container-top-bottom font-80 dark-grey to-left">
+          <i class="fi-eye"></i> 3,546
+        </div>
+        <div class="large-6 medium-6 small-6 columns container-top-bottom font-80 dark-grey to-right">
+          <i class="fi-like"></i> 88
+        </div>
+      </div>
+      <%# if @poll.description != nil %>
+      <div class="large-12 medium-12 small-12 columns container box">
+        <div class="large-12 medium-12 small-12 columns column-top-bottom font-90">
+          <strong>About <%= @poll.title.titleize %></strong>
+        </div>
+        <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
+          <%= @poll.description %>
+        </div>
+      </div>
+      <%# end %>
+    </div>
+    <div class="large-3 medium-3 small-3 columns show-for-medium-up">
+    </div>
+    <div class="large-3 medium-3 small-6 columns">
+      <% if @poll.user == current_user %>
+        <%= render 'poll_posts/form' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="large-12 medium-12 small-12 columns container main-sash">
+</div>
+
+<div class="large-12 medium-12 small-12 columns">
+  <div class="large-12 medium-12 small-12 columns container-top border-bottom">
+    <div class="large-12 medium-12 small-12 columns">
+      <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @title %></strong></h4>
+    </div>
+  </div>
+</div>
+<% @posts = @contest.posts %>
+<%= render 'shared/post' %>
+
+

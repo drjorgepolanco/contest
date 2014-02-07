@@ -1,4 +1,7 @@
 Contest::Application.routes.draw do
+  get "polls/index"
+  get "polls/new"
+  get "polls/show"
   # resources :challenges do
   #   member do
   #     get :posts
@@ -9,7 +12,7 @@ Contest::Application.routes.draw do
     resources :posts, controller: 'challenge_posts'
   end
 
-  resources :poll do
+  resources :polls do
     resources :posts, controller: 'poll_posts'
   end
 
