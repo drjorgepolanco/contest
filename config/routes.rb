@@ -9,6 +9,10 @@ Contest::Application.routes.draw do
     resources :posts, controller: 'challenge_posts'
   end
 
+  resources :poll do
+    resources :posts, controller: 'poll_posts'
+  end
+
   # resources :challenges do
   #   resources :posts, controller: 'challenge_posts' do
   #     member do
@@ -20,6 +24,7 @@ Contest::Application.routes.draw do
   resources :users do
     member do
       get :challenges
+      get :polls
       get :posts
       get :following, :followers
     end

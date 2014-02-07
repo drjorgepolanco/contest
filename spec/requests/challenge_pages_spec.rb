@@ -39,6 +39,23 @@ describe "challenge pages" do
     end
   end
 
+  describe "challenge index" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:c1) { FactoryGirl.create(:challenge, user: user, title: "Foo Bar", image: "http://media-cache-ak0.pinimg.com/736x/01/ba/3f/01ba3f4711dae0acd4ad746064b57c55.jpg") }
+    let!(:c2) { FactoryGirl.create(:challenge, user: user, title: "Bar Foo", image: "http://media-cache-ak0.pinimg.com/736x/4c/61/72/4c6172baf4da23c6b6d8f284a48ae16f.jpg") }
+
+    before { visit challenges_path }
+
+    it { should have_content('Challenges') }
+    it { should have_title('Challenges') }
+
+    describe "challenges" do
+      it { should have_content(c1.title) }
+      it { should have_content(c2.title) }
+      it { should have_content(user.challenges.count) }
+    end
+  end
+
   describe "challenge destruction" do
     before { FactoryGirl.create(:challenge, user: user) }
 

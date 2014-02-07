@@ -17,7 +17,7 @@ class ChallengePostsController < ApplicationController
     @post = @contest.posts.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @contest, notice: "The Post was succesfully added to this Challenge" }
+        format.html { redirect_to @contest, notice: "The Post was succesfully added to this Contest" }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
