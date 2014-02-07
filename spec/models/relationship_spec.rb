@@ -25,15 +25,4 @@ describe Relationship do
     before { relationship.follower_id = nil }
     it { should_not be_valid }
   end
-
 end 
-
-
-    # it "should destroy associated relationships" do
-    #   relationships = @user.relationships.to_a
-    #   @user.destroy
-    #   expect(relationships).not_to be_empty
-    #   relationships.each do |relationship|
-    #     expect(Relationship.where(id: relationship.id)).to be_empty
-    #   end
-    # end
