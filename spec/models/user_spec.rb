@@ -22,6 +22,7 @@ describe User do
   it { should respond_to(:admin) }
   it { should respond_to(:posts) }
   it { should respond_to(:challenges) }
+  it { should respond_to(:polls) }
   it { should respond_to(:feed) }
   it { should respond_to(:relationships) }
   it { should respond_to{:followed_users} }
@@ -266,6 +267,29 @@ describe User do
       expect(challenges).not_to be_empty
       challenges.each do |challenge|
         expect(Challenge.where(id: challenge.id)).to be_empty
+      end
+    end
+  end
+
+  describe "poll associations" do
+    before { @user.save }
+    let! (:older_poll) do
+      FactoryGirl.create(:poll, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_poll) do
+      FactoryGirl.create(:poll, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right polls in the right order" do
+      expect(@user.polls.to_a).to eq [newer_poll, older_poll]
+    end
+
+    it "should destroy associated polls" do
+      polls = @user.polls.to_a
+      @user.destroy
+      expect(polls).not_to be_empty
+      polls.each do |poll|
+        expect(Poll.where(id: poll.id)).to be_empty
       end
     end
   end
