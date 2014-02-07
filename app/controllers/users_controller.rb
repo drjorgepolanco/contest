@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @challenges = @user.challenges
+    # @challenges = @user.challenges
+    # @polls = @user.polls
     @feed_items = current_user.feed
     @followers = @user.followers.limit(6)
   end
@@ -75,6 +76,7 @@ class UsersController < ApplicationController
 
   def challenges
     @user = User.find(params[:id])
+    @challenges = @user.challenges
     @challenges = @user.challenges
     @feed_items = @user.feed
   end

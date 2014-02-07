@@ -46,8 +46,8 @@ describe "poll pages" do
 
     before { visit polls_path }
 
-    it { should have_content('polls') }
-    it { should have_title('polls') }
+    it { should have_content('Polls') }
+    it { should have_title('Polls') }
 
     describe "polls" do
       it { should have_content(p1.title) }

@@ -7,7 +7,6 @@ describe User do
                             tag: "Web Developer", password: "foobar", password_confirmation: "foobar")
   end
 
-  # , date_of_birth: 07/31/1983
   subject {@user}
 
   it { should respond_to(:first_name) }
