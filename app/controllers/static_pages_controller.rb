@@ -8,14 +8,20 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    @feed_items = current_user.feed
+    if signed_in?
+      @feed_items = current_user.feed
+    end
   end
 
   def help
-    @feed_items = current_user.feed
+    if signed_in?
+      @feed_items = current_user.feed
+    end
   end
 
   def contact
-    @feed_items = current_user.feed
+    if signed_in?
+      @feed_items = current_user.feed
+    end
   end
 end
