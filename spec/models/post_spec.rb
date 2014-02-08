@@ -10,6 +10,7 @@ describe Post do
 
   it { should respond_to(:title) }
   it { should respond_to(:description) }
+  it { should respond_to(:image) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should eq user }

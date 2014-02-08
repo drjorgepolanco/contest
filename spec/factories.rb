@@ -35,4 +35,9 @@ FactoryGirl.define do
     tag "animals"
     user
   end
+
+  factory :comment do
+    content "Agua chi fau chu jacha color sit amet, No podemos respirar"
+    user
+  end
 end
