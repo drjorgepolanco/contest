@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_action :signed_in_user, only: [:index, :show, :edit, :update, :create, :destroy]
   before_filter :load_commentable
 
+  def show
+    @comment = Comment.find(params[:id]) 
+  end
+
   def index
     @comments = @commentable.comments
     @feed_items = current_user.feed
@@ -31,7 +35,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     respond_to do |format|
       if @comment.update_attributes(comment_params)
-        format.html { redirect_to @comment, :notice => "#{@comment.title.titleize} was succesfully updated." }
+        format.html { redirect_to @commentable, :notice => "Your comment was succesfully updated." }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -41,6 +45,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to :back }

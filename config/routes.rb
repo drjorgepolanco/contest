@@ -10,7 +10,7 @@ Contest::Application.routes.draw do
   match '/contact',   to: 'static_pages#contact',   via: 'get' 
 
   resources :sessions, only: [:new, :create, :destroy]
-
+  resources :comments
   resources :relationships, only: [:create, :destroy]
 
   resources :posts do

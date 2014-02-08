@@ -79,22 +79,22 @@
 
     <div class="large-12 medium-12 small-12 columns container-top-bottom box">
       <div class="large-2 medium-2 small-2 columns">
-        <a class="fi-social-facebook font-100" href="#"></a>
+        <a class="fi-social-facebook font-100 blue" href="#"></a>
       </div>
       <div class="large-2 medium-2 small-2 columns">
         <a class="fi-social-twitter font-100" href="#"></a>
       </div>
       <div class="large-2 medium-2 small-2 columns">
-        <a class="fi-social-pinterest font-100" href="#"></a>
+        <a class="fi-social-pinterest font-100 red" href="#"></a>
       </div>
       <div class="large-2 medium-2 small-2 columns">
-        <a class="fi-social-google-plus font-100" href="#"></a>
+        <a class="fi-social-google-plus font-100 red" href="#"></a>
       </div>
       <div class="large-2 medium-2 small-2 columns">
-        <a class="fi-mail font-100" href="#"></a>
+        <a class="fi-mail font-100 grey" href="#"></a>
       </div>
       <div class="large-2 medium-2 small-2 columns">
-        <a class="fi-social-yelp font-100" href="#"></a>
+        <a class="fi-social-yelp font-100 red" href="#"></a>
       </div>
     </div>
 
@@ -112,13 +112,20 @@
   <div class="large-4 medium-4 small-12 columns show-for-medium-up">
 
   <% if @followers.try(:any?) %>
-    <div class="large-12 medium-12 small-12 columns container box">
-      <div class="large-12 medium-12 small-12 columns column-top-bottom container">
-        <div class="large-8 medium-8 small-6 columns to-left">
-          <strong><%= link_to "#{@post.user.first_name.capitalize} Followers:", followers_user_path(@post.user) %></strong>
+      <div class="large-12 medium-12 small-12 columns container box">
+        <div class="large-12 medium-12 small-12 columns column-top-bottom container">
+          <div class="large-9 medium-9 small-9 columns to-left">
+            <strong>
+              <%= link_to "#{@post.user.first_name.capitalize} Followers:", followers_user_path(@post.user) %>
+            </strong>
+          </div>
+          <div class="large-3 medium-3 small-3 columns to-right">
+            <strong>
+              <%= link_to @post.user.followers.count, followers_user_path(@post.user) %>
+            </strong>
+          </div>
         </div>
-      </div>
-      <div class="large-12 medium-12 small-12 columns container-left-right-mid border">
+        <div class="large-12 medium-12 small-12 columns container-left-right-mid border">
           <% @followers.each do |user| %>
             <div class="large-2 medium-2 small-2 columns row-image">
               <div class="large-12 medium-12 small-12 columns image">
@@ -127,18 +134,25 @@
             </div>
           <% end %>
         </div>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 
   <% if @feed_items.try(:any?) %>
     <div class="large-12 medium-12 small-12 columns container box show-for-medium-up">
       <div class="large-12 medium-12 small-12 columns column-top-bottom container">
-        <div class="large-12 medium-12 small-12 columns to-left">
-          <strong><%= link_to "#{@post.user.first_name.capitalize} Follows:", following_user_path(@user) %></strong>
+        <div class="large-9 medium-9 small-9 columns to-left">
+          <strong>
+            <%= link_to "#{@user.first_name.capitalize} Follows:", following_user_path(@user) %>
+          </strong>
+        </div>
+        <div class="large-3 medium-3 small-3 columns to-right">
+          <strong>
+            <%= link_to @user.followed_users.count, following_user_path(@user) %>
+          </strong>
         </div>
       </div>
       <div class="large-12 medium-12 small-12 columns container border">
-        <%= render partial: 'users/feed', locals: {feed_items: @post.user.feed} %>
+        <%= render partial: 'users/feed', locals: {feed_items: @user.feed} %>
       </div>
     </div>
   <% end %>
