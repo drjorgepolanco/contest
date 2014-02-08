@@ -12,6 +12,9 @@
     @post = Post.new
     @feed_items = current_user.feed
     @title = "#{@contest.title.titleize}'s Posts"
+    @commentable = @poll
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new

@@ -34,8 +34,8 @@
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :contest_id, :value => @contest.id %>
 
-      <div>
-        <%= f.submit "Dare!", :class => "button tiny right" %>
+      <div class="container-bottom">
+        <%= f.submit "Dare!", :class => "button tiny" %>
       </div>
     <% end %>
   </div>

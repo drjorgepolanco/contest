@@ -1,3 +1,11 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-field {
+  height: 80px;
+  -webkit-box-shadow: 0px 2px 10px rgba(21, 21, 21, 0.6);
+  -moz-box-shadow:    0px 2px 10px rgba(21, 21, 21, 0.6);
+  box-shadow:         0px 2px 10px rgba(21, 21, 21, 0.6);
+}
+
+.comments {
+  overflow: auto;
+  max-height: 300px;
+}

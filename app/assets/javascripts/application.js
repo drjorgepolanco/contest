@@ -16,3 +16,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+// $(function() {
+//   $('#submit').click(function() {
+//     $('#form').submit();
+//   });
+// });

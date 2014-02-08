@@ -1,4 +1,3 @@
-<% if @contest.user == current_user %>
 <div class="large-12 medium-12 small-12 columns container-top-bottom contest-form">
   <%= form_for [@contest, @post] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
@@ -36,14 +35,9 @@
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :contest_id, :value => @contest.id %>
         <div class="large-12 medium-12 small-12 columns column-bottom">
-          <%= f.submit "Add Post to Poll", :class => "button tiny" %>
+          <%= f.submit "Add Post to Challenge", :class => "button tiny" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-<% else %>
-<div class="large-12 medium-12 small-12 columns to-center red">
-  <p><i class="fi-alert"></i> Sorry, you are not authorize to add Posts to <strong><%= @contest.title.titleize %></strong></p>
-</div>
-<% end %>

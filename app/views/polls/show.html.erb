@@ -24,10 +24,10 @@
 
 <div class="large-12 medium-12 small-12 columns container">
   <div class="large-12 medium-12 small-12 columns container-top-bottom-2x">
-    <div class="large-3 medium-3 small-6 columns">
+    <div class="large-4 medium-4 small-6 columns">
       <%= image_tag @poll.image, class: "image" %>
     </div>
-    <div class="large-3 medium-3 small-3 columns container show-for-medium-up">
+    <div class="large-4 medium-4 small-4 columns container show-for-medium-up">
       <div class="large-12 medium-12 small-12 columns container box">
         <div class="large-3 medium-3 small-3 columns container">
           <%= link_to image_tag(@poll.user.profile_pic, class: "image"), user_path(@poll.user) %>
@@ -41,6 +41,28 @@
           </div>
         </div>
       </div>
+
+      <div class="large-12 medium-12 small-12 columns container-top-bottom box">
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-social-facebook font-100" href="#"></a>
+        </div>
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-social-twitter font-100" href="#"></a>
+        </div>
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-social-pinterest font-100" href="#"></a>
+        </div>
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-social-google-plus font-100" href="#"></a>
+        </div>
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-mail font-100" href="#"></a>
+        </div>
+        <div class="large-2 medium-2 small-2 columns">
+          <a class="fi-social-yelp font-100" href="#"></a>
+        </div>
+      </div>
+      
       <div class="large-12 medium-12 small-12 columns box">
         <div class="large-6 medium-6 small-6 columns container-top-bottom font-80 dark-grey to-left">
           <i class="fi-eye"></i> 3,546
@@ -54,24 +76,33 @@
         <div class="large-12 medium-12 small-12 columns column-top-bottom font-90">
           <strong>About <%= @poll.title.titleize %></strong>
         </div>
-        <div class="large-12 medium-12 small-12 columns column-top-bottom box-content about">
+        <div class="large-12 medium-12 small-12 columns column-top-bottom border font-80 justify">
           <%= @poll.description %>
         </div>
       </div>
       <%# end %>
     </div>
-    <div class="large-3 medium-3 small-3 columns show-for-medium-up">
-    </div>
-    <div class="large-3 medium-3 small-6 columns">
-      <% if @poll.user == current_user %>
-        <%= render 'poll_posts/form' %>
-      <% end %>
+    <div class="large-4 medium-4 small-4 columns show-for-medium-up">
+      <div class="large-12 medium-12 small-12 columns container">
+        <div class="large-12 medium-12 small-12 columns column-bottom container">
+          <%= render 'shared/comments_form' %>
+        </div>
+        <div class="large-12 medium-12 small-12 columns container comments box">
+          <%= render 'shared/comments' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="large-12 medium-12 small-12 columns container main-sash">
-</div>
+<% if @poll.user == current_user %>
+  <div class="large-12 medium-12 small-12 columns column-bottom">
+    <%= render 'poll_posts/form' %>
+  </div>
+<% else %>
+    <div class="large-12 medium-12 small-12 columns container main-sash">
+    </div>
+<% end %>
 
 <div class="large-12 medium-12 small-12 columns">
   <div class="large-12 medium-12 small-12 columns container-top border-bottom">

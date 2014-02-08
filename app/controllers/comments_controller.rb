@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @feed_items = current_user.feed
     @comment = @commentable.comments.new(comment_params)
     if @comment.save
       redirect_to @commentable, notice: "Your comment was succesfully posted!"

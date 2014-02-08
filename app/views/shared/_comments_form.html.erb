@@ -1,12 +1,15 @@
-<div class="large-12 medium-12 small-12 columns column-top-bottom">
-  <%= form_for [@commentable, @comment] do |f| %>
+<div class="large-12 medium-12 small-12 columns container">
+  <%= form_for [@commentable, @comment], :html => { :id => 'form' } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-      <%= f.text_area :content, :placeholder => "Write your comment here!" %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Send", :class => "button tiny right" %>
+
+    <div class="large-12 medium-12 small-12 columns container">
+      <div class="large-12 medium-12 small-12 columns container border">
+        <%= f.text_area :content, :placeholder => "Write your comment here!", class: "comment-field margin-0" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      </div>
+      <div class="large-12 medium-12 small-12 columns container-top-bottom">
+        <%= f.submit "Comment!", :class => "button tiny container right" %>
+      </div>
     </div>
   <% end %>
 </div>

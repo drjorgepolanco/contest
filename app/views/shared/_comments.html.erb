@@ -1,22 +1,24 @@
-<div class="large-12 medium-12 small-12 columns">
-  <% @comments.each do |comment| %>
-  <div class="large-12 medium-12 small-12 columns">
-    <div class="large-3 medium-3 small-3 columns">
-      <%= link_to image_tag(comment.user.profile_pic, :class => "image"), comment.user %>
-    </div>
-    <div class="large-9 medium-9 small-9 columns">
-      <div class="large-12 medium-12 small-12 columns">
-        <strong>
-          <%= link_to "#{full_name(comment.user)}", comment.user %>
-        </strong>
+<% @comments.each do |comment| %>
+  <div class="large-12 medium-12 small-12 columns container">
+    <div class="large-12 medium-12 small-12 columns column-top-bottom border-bottom">
+      <div class="large-2 medium-2 small-2 columns container">
+        <%= link_to image_tag(comment.user.profile_pic, :class => "image"), comment.user %>
       </div>
-      <div class="large-12 medium-12 small-12 columns">
-      <%= comment.content %>
+      <div class="large-10 medium-10 small-10 columns container">
+        <div class="large-12 medium-12 small-12 columns font-90">
+          <strong>
+            <%= link_to "#{full_name(comment.user)}", comment.user %>
+          </strong>
+        </div>
+        <div class="large-12 medium-12 small-12 columns font-80 dark-grey column-top-mid justify">
+        <%= comment.content %>
+        </div>
+        <div class="large-12 medium-12 small-12 columns font-70 grey column-top-mid">
+          Posted <%= time_ago_in_words(comment.created_at) %> ago.
+        </div>      
       </div>
-      <div class="large-12 medium-12 small-12 columns">
-        Posted <%= time_ago_in_words(comment.created_at) %> ago.
-      </div>      
     </div>
   </div>
-  <% end %>
-</div>
+<% end %>
+
+

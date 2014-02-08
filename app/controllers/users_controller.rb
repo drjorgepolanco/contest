@@ -16,6 +16,9 @@ class UsersController < ApplicationController
     # @polls = @user.polls
     @feed_items = current_user.feed
     @followers = @user.followers.limit(6)
+    @commentable = @user
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new

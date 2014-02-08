@@ -12,6 +12,9 @@ class ChallengesController < ApplicationController
     @post = Post.new
     @feed_items = current_user.feed
     @title = "#{@contest.title.titleize}'s Posts"
+    @commentable = @challenge
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new
