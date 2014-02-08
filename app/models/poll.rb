@@ -1,6 +1,7 @@
 class Poll < ActiveRecord::Base
   belongs_to :user
   has_many :posts, as: :contest
+  has_many :comments, as: :commentable, dependent: :destroy
   default_scope -> { order('created_at DESC') }
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 50 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207024524) do
+ActiveRecord::Schema.define(version: 20140207225950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20140207024524) do
 
   add_index "challenges", ["user_id", "created_at"], name: "index_challenges_on_user_id_and_created_at", using: :btree
   add_index "challenges", ["user_id"], name: "index_challenges_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "polls", force: true do |t|
     t.integer  "user_id"

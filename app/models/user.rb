@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :challenges, dependent: :destroy
   has_many :polls, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -21,6 +22,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+  default_scope -> { order('created_at DESC') }
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

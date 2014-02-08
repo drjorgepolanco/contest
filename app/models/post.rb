@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :contest, polymorphic: true
+  has_many :comments, as: :commentable, dependent: :destroy
   default_scope -> { order('created_at DESC') }
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 70 }
