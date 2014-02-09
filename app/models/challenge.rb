@@ -6,7 +6,8 @@ class Challenge < ActiveRecord::Base
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :user_id, presence: true
-
+  has_many :votes
+  has_many :posts, through: :votes
 
   # def self.from_users_followed_by(user)
   #   followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"

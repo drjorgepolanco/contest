@@ -60,6 +60,13 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def vote_for
+    @post = Post.find(params[:post_id])
+    @user = current_user
+    @vote = @post.votes.create(params[:vote_id])
+    redirect_to :back
+  end
+
   private
     def set_challenge
       @challenge = Challenge.find(params[:id])

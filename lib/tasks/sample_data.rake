@@ -13,7 +13,7 @@ def make_users
   admin = User.create!(first_name: "Jorge", 
                       last_name: "Polanco", 
                       email: "dr.jorgepolanco@gmail.com", 
-                      profile_pic: "http://media-cache-ec0.pinimg.com/736x/43/f1/73/43f173f56c91bb56702a90bf5bfb02f0.jpg",
+                      profile_pic: "http://media-cache-ec0.pinimg.com/736x/39/f5/d0/39f5d02c42a8d276e17fe8a3d04b2e34.jpg",
                       tag: "Web Developer",
                       password: "foobar", 
                       password_confirmation: "foobar",
@@ -22,7 +22,7 @@ def make_users
   99.times do |n|
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
-    profile_pic = "https://scontent-a-dfw.xx.fbcdn.net/hphotos-ash3/t1/529434_784879471539780_740672644_n.jpg"
+    profile_pic = "http://media-cache-ak0.pinimg.com/736x/bf/fa/0c/bffa0c06087a0337c9a5ab87c73d37fd.jpg"
     tag = "Lover"
     email = "example-#{n+1}@talentcrops.com"
     password = "password"
@@ -39,9 +39,9 @@ end
 def make_posts
   users = User.all(limit: 10)
   15.times do 
-    title = Faker::Lorem.sentence(1)
+    title = "This is a Post"
     description = Faker::Lorem.sentence(4)
-    image = "https://scontent-a-dfw.xx.fbcdn.net/hphotos-frc3/1531643_10153663979055317_222641967_n.jpg"
+    image = "http://media-cache-ak0.pinimg.com/736x/fe/aa/47/feaa47b6d8446f13418dfc18abbada03.jpg"
     users.each { |user| user.posts.create!(title: title,
                                           description: description,
                                           image: image) }
@@ -51,9 +51,9 @@ end
 def make_challenges
   users = User.all(limit: 10)
   15.times do 
-    title = Faker::Lorem.sentence(1)
+    title = "This is a Challenge"
     description = Faker::Lorem.sentence(4)
-    image = "http://media-cache-ec0.pinimg.com/736x/0d/61/82/0d618222ed9070af615bf29b54243205.jpg"
+    image = "http://media-cache-ak0.pinimg.com/736x/f7/31/ae/<f731ae3448a404710013aac3057cc51a class="jpg"></f731ae3448a404710013aac3057cc51a>"
     users.each { |user| user.challenges.create!(title: title,
                                           description: description,
                                           image: image) }
@@ -63,10 +63,10 @@ end
 def make_polls
   users = User.all(limit: 10)
   15.times do 
-    title = Faker::Lorem.sentence(1)
+    title = "This is a Poll"
     description = Faker::Lorem.sentence(4)
     image = "http://media-cache-ec0.pinimg.com/736x/9a/b8/23/9ab8233cddc0d085f6db2a6ff52961ed.jpg"
-    users.each { |user| user.challenges.create!(title: title,
+    users.each { |user| user.polls.create!(title: title,
                                           description: description,
                                           image: image) }
   end
