@@ -5,7 +5,7 @@ namespace :db do
     make_posts
     make_relationships
     make_challenges
-    # make_polls
+    make_polls
   end
 end
 
@@ -13,6 +13,7 @@ def make_users
   admin = User.create!(first_name: "Jorge", 
                       last_name: "Polanco", 
                       email: "dr.jorgepolanco@gmail.com", 
+                      profile_pic: "http://media-cache-ec0.pinimg.com/736x/43/f1/73/43f173f56c91bb56702a90bf5bfb02f0.jpg",
                       tag: "Web Developer",
                       password: "foobar", 
                       password_confirmation: "foobar",
@@ -37,9 +38,9 @@ end
 
 def make_posts
   users = User.all(limit: 10)
-  50.times do 
-    title = "Lorem Ipsum"
-    description = "Color sit amet makagrano"
+  15.times do 
+    title = Faker::Lorem.sentence(1)
+    description = Faker::Lorem.sentence(4)
     image = "https://scontent-a-dfw.xx.fbcdn.net/hphotos-frc3/1531643_10153663979055317_222641967_n.jpg"
     users.each { |user| user.posts.create!(title: title,
                                           description: description,
@@ -49,27 +50,27 @@ end
 
 def make_challenges
   users = User.all(limit: 10)
-  50.times do 
-    title = content = Faker::Lorem.sentence(1)
+  15.times do 
+    title = Faker::Lorem.sentence(1)
     description = Faker::Lorem.sentence(4)
-    image = "http://media-cache-ak0.pinimg.com/736x/c6/7c/d0/c67cd06ae7c972aeb0a48ca59c95fe28.jpg"
+    image = "http://media-cache-ec0.pinimg.com/736x/0d/61/82/0d618222ed9070af615bf29b54243205.jpg"
     users.each { |user| user.challenges.create!(title: title,
                                           description: description,
                                           image: image) }
   end
 end
 
-# def make_polls
-#   users = User.all(limit: 10)
-#   50.times do 
-#     title = content = Faker::Lorem.sentence(1)
-#     description = Faker::Lorem.sentence(4)
-#     image = "http://media-cache-ak0.pinimg.com/736x/17/b9/9f/17b99f98332ea486d58e36631c2952f9.jpg"
-#     users.each { |user| user.challenges.create!(title: title,
-#                                           description: description,
-#                                           image: image) }
-#   end
-# end
+def make_polls
+  users = User.all(limit: 10)
+  15.times do 
+    title = Faker::Lorem.sentence(1)
+    description = Faker::Lorem.sentence(4)
+    image = "http://media-cache-ec0.pinimg.com/736x/9a/b8/23/9ab8233cddc0d085f6db2a6ff52961ed.jpg"
+    users.each { |user| user.challenges.create!(title: title,
+                                          description: description,
+                                          image: image) }
+  end
+end
 
 def make_relationships
   users = User.all
