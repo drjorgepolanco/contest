@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
   # default_scope -> { order('created_at DESC') }
+  acts_as_voter
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

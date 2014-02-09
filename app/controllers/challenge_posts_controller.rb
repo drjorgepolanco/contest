@@ -27,6 +27,18 @@ class ChallengePostsController < ApplicationController
     end
   end
 
+  def vote_for
+    # @contest = Contest.find(params[:contest_id])
+    begin
+      current_user.vote_for(@post = Post.find(params[:id]))
+      flash[:notice] = "You have voted successfully"
+      redirect_to :back
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] =  "You have already voted"
+      redirect_to :back
+    end
+  end
+
 private
 
   def post_params

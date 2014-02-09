@@ -19,12 +19,20 @@ Contest::Application.routes.draw do
 
   resources :challenges do
     resources :comments
-    resources :posts, controller: 'challenge_posts'
+    resources :posts, controller: 'challenge_posts' do
+      member do
+        get :vote_for
+      end
+    end
   end
 
   resources :polls do
     resources :comments
-    resources :posts, controller: 'poll_posts'
+    resources :posts, controller: 'poll_posts' do
+      member do
+        get :vote_for
+      end
+    end
   end
 
   resources :users do

@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 70 }
   validates :user_id, presence: true
-
+  acts_as_voteable
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"

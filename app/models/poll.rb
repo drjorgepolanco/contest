@@ -6,6 +6,7 @@ class Poll < ActiveRecord::Base
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :user_id, presence: true
+  
 
 
   # def self.from_users_followed_by(user)
