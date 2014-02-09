@@ -168,7 +168,7 @@
     <div class="large-10 medium-10 small-10 columns left">
       <h4 class="main-title"><strong><i class="fi-page-filled"></i> <%= @post.user.first_name.capitalize %>'s posts:</strong></h4>
     </div>
-  <% if @post.user.posts.any? %>
+  <%# if @post.user.posts.any? %>
     <div class="large-2 medium-2 small-2 columns to-right">
       <h4 class="main-title"><strong>(<%= @post.user.posts.count %>)</strong></h4>
     </div>
@@ -177,4 +177,4 @@
 
 <% @posts = @post.user.posts %>
 <%= render 'shared/post' %>
-<% end %>
+<%# end %>

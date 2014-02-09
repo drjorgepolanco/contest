@@ -17,7 +17,7 @@
                         <%= "✓" unless current_user.votes.where(post_id: post.id).blank? %>
                       </div>
                       <div class="large-4 medium-4 small-4 columns container-top-bottom-mid icon">
-                        <%= link_to "Vote", post_votes_path(post_id: post.id), method: :post %>
+                        <%= link_to "Vote", challenge_post_votes_path(post_id: @post.id), method: :post %>
                       </div>
                     </div>
                     <div class="large-12 medium-12 small-12 columns container-top-bottom show-for-medium-up">

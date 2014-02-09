@@ -15,11 +15,14 @@ Contest::Application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :votes, only: [:create, :destroy]
   end
 
   resources :challenges do
     resources :comments
-    resources :posts, controller: 'challenge_posts'
+    resources :posts, controller: 'challenge_posts' do
+      resources :votes, only: [:create, :destroy]
+    end
   end
 
   resources :polls do

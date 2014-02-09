@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 70 }
   validates :user_id, presence: true
+  has_many :votes
+  has_many :users, through: :votes
 
 
   def self.from_users_followed_by(user)

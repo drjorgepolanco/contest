@@ -10,11 +10,11 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @followers = @user.followers.limit(6)
-    @commentable = @post
-    @comments = @commentable.comments
-    @comment = Comment.new
     if signed_in?
+      @followers = @user.followers.limit(6)
+      @commentable = @post
+      @comments = @commentable.comments
+      @comment = Comment.new
       @feed_items = current_user.feed
     end
   end

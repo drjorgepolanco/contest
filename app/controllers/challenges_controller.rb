@@ -15,6 +15,8 @@ class ChallengesController < ApplicationController
     @commentable = @challenge
     @comments = @commentable.comments
     @comment = Comment.new
+    # @votes = Vote.all
+    # @vote = current_user.votes.build(post_id: :id)
   end
 
   def new
