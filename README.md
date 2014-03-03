@@ -45,3 +45,6 @@ by [Jorge Polanco](http://drjorgepolanco.wordpress.com/).
 
     bundle exec rake test:prepare
     bundle exec rspec spec/
+
+
+
