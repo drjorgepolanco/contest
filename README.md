@@ -5,8 +5,8 @@ by [Jorge Polanco](http://drjorgepolanco.wordpress.com/).
 ### Features
 
 * **Socialize!:** Users can follow and be followed by other users.
-* **Share!:** Users can share Postings and create Contests to find the best ones.
-* **Interact!:** Users can vote on the best Postings inside the Contests and can comment.
+* **Share!:** Users can share Posts and create Contests to find the best ones.
+* **Interact!:** Users can vote on the best Posts inside the Contests and write comments.
 * **Find Out!:** Live feed allows the user to know what's going on with the people he follows. Any user can see in another user's profile what the people this last user is following are doing.
 
 ### Technologies
@@ -15,6 +15,7 @@ by [Jorge Polanco](http://drjorgepolanco.wordpress.com/).
 * **Data Storage:** Amazon S3
 * **Image Upload:** Carrierwave
 * **Testing:** RSPEC (206 examples, 3 failures by 03.02.2014)
+* **Fully Responsive Web Design**
 
 ### Status
 * **The proyect is still in progress.**
