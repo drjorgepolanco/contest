@@ -15,6 +15,7 @@ by [Jorge Polanco](http://drjorgepolanco.wordpress.com/).
 * **Data Storage:** Amazon S3
 * **Image Upload:** Carrierwave
 * **Testing:** RSPEC (206 examples, 3 failures by 03.02.2014)
+* **Fully Responsive Web Design**
 
 ### Status
 * **The proyect is still in progress.**
